@@ -1,40 +1,3 @@
-<?php
-    include('../configuration/config.php');
-
-    
-    if(isset($_COOKIE['token'])){
-        $id=$_COOKIE['token'];
-
-        $sql ="SELECT account.*, user.fullname
-               FROM account 
-               JOIN user ON account.id = user.id 
-               WHERE account.id=$id";
-
-            if($rs=$conn->query($sql)){
-                if($rs->num_rows>0){
-                    $row=$rs->fetch_assoc();
-                    $usertype=$row['user_type'];
-                    $userid=$row['id'];
-                    $fname=$row['fullname']; // Add this line to get the user's first name
-            // Add this line to get the user's last name
-                    switch($usertype){
-                    case 1 : header("location:"); break;
-
-                    //case 2 : header("location:../student/user.php"); break;
-                    }
-                }else{
-                    //token not exist
-                    header("location:login.php");
-                }
-                }
-                else{
-                    echo $conn->error;
-                }
-            }else{
-                header("location:login.php");
-            }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,6 +6,12 @@
     <!-- confirm css -->
     <link rel="stylesheet" href="confirm.css" />
     <link rel="stylesheet" href="../style/dashboard.css" />
+
+    <!-- jquery datatable -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
     <title>User</title>
   </head>
   <body>
@@ -66,14 +35,14 @@
           </a>
         </li>
         <li>
-          <a href="Inventory.php">
+          <a href="#">
             <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
         </li>
         <li>
           <a href="#">
-            <i class="fa-solid fa-square-plus"></i>
+            <i class="fa-solid fa-book"></i>
             <span>Register Book</span>
           </a>
         </li>
@@ -98,31 +67,27 @@
       </ul>
     </div>
 
-    <div class="main--content">
-      <div class="header--wrapper">
-        <div class="header--title">
-          <span>Primary</span>
-          <h2>Dashboard</h2>
-        </div>
+    
+    <h2 class="title">Inventory</h2>
+        <table class="items" id="table">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                    //php for book items display
+                ?>
+            </tbody>
+        </table>
 
-      <div class="header">
-        <p><?php echo strtoupper($fname); ?> </p>
-        </div>
-
-      <div class="lostitems">
-            <h1 class="lost">Borrowed Books</h1>
-        </div>
-
-        <div class="returned">
-            <h1 class="rbook">Returned Books</h1>
-        </div>
-
-        <div class="available">
-            <h1 class="avail">Available Books</h1>
-        </div>
-
-
-    <!-- firebase -->
+          <!-- firebase -->
     <script type="module" src="/tunesc-vs/auth/signin.js"></script>
     <script type="module" src="/tunesc-vs/auth/signup.js"></script>
 
@@ -131,5 +96,14 @@
       src="https://kit.fontawesome.com/64d29af423.js"
       crossorigin="anonymous"
     ></script>
+
   </body>
+
+  
+  <script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
+    </script>
+
 </html>
