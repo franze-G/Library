@@ -1,3 +1,12 @@
+<?php
+    include('../configuration/config.php');
+
+    // Fetch user details from the database
+    $sql = "SELECT * FROM book";
+    $result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,7 +38,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="Dashboard.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
@@ -67,25 +76,49 @@
       </ul>
     </div>
 
-    
-    <h2 class="title">Inventory</h2>
-        <table class="items" id="table">
+    <div class="content">
+        <h1>Book Inventory</h1>
+
+        <table id="userTable" class="display">
             <thead>
                 <tr>
-                    <th>Book ID</th>
-                    <th>Title</th>
+                    <th>Image</th>
+                    <th>ID</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
                     <th>Genre</th>
+                    <th>Publish Date</th>
+                    <th>Quantity</th>
                     <th>Status</th>
                     <th>Action</th>
-                    <th></th>
+                    <!-- Add more columns as needed -->
                 </tr>
             </thead>
             <tbody>
-            <?php
-                    //php for book items display
+                <!-- Dynamically populate this tbody with user data -->
+                <?php
+                    if ($result->num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                            // Determine the class based on status for styling
+
+                            echo '<tr>';
+                            echo '<td><img src="' . $row['image'] . '" alt="Book Image" height="50"></td>';
+                            echo '<td>' . $row['id'] . '</td>';
+                            echo '<td>' . $row['title'] . '</td>';
+                            echo '<td>' . $row['author'] . '</td>';
+                            echo '<td>' . $row['genre'] . '</td>';
+                            echo '<td>' . $row['date_publish'] . '</td>';
+                            echo '<td>' . $row['quantity'] . '</td>';
+                            echo '<td>' . $row['status'] . '</td>';
+                            // Replace this line in the table body
+                            echo '</tr>';
+                        }
+                    }
                 ?>
             </tbody>
         </table>
+    </div>
+
 
           <!-- firebase -->
     <script type="module" src="/tunesc-vs/auth/signin.js"></script>
@@ -97,13 +130,11 @@
       crossorigin="anonymous"
     ></script>
 
-  </body>
-
-  
-  <script>
+    <script>
     $(document).ready(function() {
-        $('#table').DataTable();
+        $('#userTable').DataTable();
     });
-    </script>
+</script>
 
+</body>
 </html>

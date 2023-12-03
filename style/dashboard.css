@@ -222,4 +222,8 @@ body {
   text-transform: uppercase;/* Prevent line breaks */
 }
 
+.count{
+  color: var(--accent);
+}
+
 /* card container */

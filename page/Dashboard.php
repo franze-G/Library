@@ -33,6 +33,7 @@
             }else{
                 header("location:login.php");
             }
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +73,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="Register.php">
             <i class="fa-solid fa-square-plus"></i>
             <span>Register Book</span>
           </a>
@@ -118,8 +119,21 @@
         </div>
 
         <div class="available">
-            <h1 class="avail">Available Books</h1>
-        </div>
+        <h1 class="avail">Available Books</h1>
+        <?php
+            $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+            $result = $conn->query($sql);
+
+            if ($result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $bookCount = $row['bookCount'];
+
+                echo "<p class='count'>$bookCount</p>";
+            } else {
+                echo "Error fetching book count: " . $conn->error;
+            }
+        ?>
+</div>
 
 
     <!-- firebase -->
