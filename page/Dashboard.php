@@ -110,72 +110,76 @@
           <span>Primary</span>
           <h2>Dashboard</h2>
         </div>
-        <div class="header">
+        <div class="header--name">
           <p><?php echo strtoupper($fname); ?> </p>
         </div>
       </div>
       
-      <div class="top--right-buttons">    
-        <div class="borow--book">
+      <div class="top--buttons">
+        <div class="card card-button borow--book">
           <p>Borrow Book</p>
           <i class='bx bx-plus'></i>
         </div>
-        <i class='bx bxs-bell'></i>
+        <div class="card card-notif">
+          <i class='bx bxs-bell'></i>
+        </div>
       </div>
 
       <div class="top--cards">
-        <div class="card--child lostitems">
-          <?php
-            $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
-            $result = $conn->query($sql);
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $bookCount = $row['bookCount'];
-                echo "<p class='count'>$bookCount</p>";
-            } else {
-                echo "Error fetching book count: " . $conn->error;
-            }
-          ?>
-          <p class="statement">Borrowed Books</p>
+        <div class="card card--content lost">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Borrowed Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
         </div>
-        <div class="card--child returned">
-          <?php
-            $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
-            $result = $conn->query($sql);
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $bookCount = $row['bookCount'];
-                //alisin ko classname
-                echo "<p class='count'>$bookCount</p>";
-            } else {
-                echo "Error fetching book count: " . $conn->error;
-            }
-          ?>
-          <p class="statement">Returned Books</p>
+        <div class="card card--content returned">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Returned Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
         </div>
-        <div class="card--child available">
-          <?php
-            $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
-            $result = $conn->query($sql);
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $bookCount = $row['bookCount'];
-                echo "<p class='count'>$bookCount</p>";
-            } else {
-                echo "Error fetching book count: " . $conn->error;
-            }
-          ?>
-          <p class="statement">Available Books</p>
-            </div>  
+        <div class="card card--content available">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Available Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
+        </div>
         </div>
       </div>
-        
     </div>
-
-
-    <!-- firebase -->
-    <script type="module" src="/tunesc-vs/auth/signin.js"></script>
-    <script type="module" src="/tunesc-vs/auth/signup.js"></script>
 
     <!-- fontawesome icons -->
     <script
