@@ -24,8 +24,10 @@ if (isset($_POST['submit'])) {
 
             if ($result === TRUE) {
                 echo "Record successfully submitted.";
-                // Optionally, you can redirect after a delay
-                // or provide a link/button to go back to the inventory page
+                
+                // Redirect to the book inventory pero may delay ng 1sec.
+                echo '<meta http-equiv="refresh" content="3;url=  Inventory.php" />';
+                exit(); // Ensure that no further code is executed after the redirect
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -37,6 +39,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -59,7 +62,7 @@ if (isset($_POST['submit'])) {
       <div class="cont-form signup">
         <div class="form-content">
           <header>Create Account</header>
-          <form id="" action="" method="post">
+          <form id="" action="" method="post" enctype="multipart/form-data">
             <div class="field input-field">
               <input
                 id=""
@@ -124,12 +127,6 @@ if (isset($_POST['submit'])) {
               <input type="submit" name="submit" value="REGISTER">
             </div>
           </form>
-          <div class="form-link">
-            <span
-              >Already have an account?
-              <a href="Login.php" class="link signup-link">Signin</a>
-            </span>
-          </div>
         </div>
       </div>
     </section>

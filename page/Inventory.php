@@ -107,7 +107,7 @@
                             echo '<td>' . $row['title'] . '</td>';
                             echo '<td>' . $row['author'] . '</td>';
                             echo '<td>' . $row['genre'] . '</td>';
-                            echo '<td>' . $row['date_publish'] . '</td>';
+                            echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                             echo '<td>' . $row['quantity'] . '</td>';
                             echo '<td>' . $row['status'] . '</td>';
                             // Replace this line in the table body

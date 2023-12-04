@@ -224,6 +224,12 @@ body {
 
 .count{
   color: var(--accent);
+  font-size: 34px;
+  position: absolute;
+  top: 20px;
+  font-family: 'Poppins','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+
 }
 
 /* card container */
