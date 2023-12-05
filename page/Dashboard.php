@@ -73,9 +73,9 @@
           </a>
         </li>
         <li>
-          <a href="Register.php">
+          <a href="account.php">
             <i class="fa-solid fa-square-plus"></i>
-            <span>Register Book</span>
+            <span>Account Management</span>
           </a>
         </li>
         <li>
@@ -112,11 +112,23 @@
 
       <div class="lostitems">
             <h1 class="lost">Borrowed Books</h1>
+        <div class="header--name">
+          <p><?php echo strtoupper($fname); ?> </p>
         </div>
-
-        <div class="returned">
-            <h1 class="rbook">Returned Books</h1>
+      </div>
+      
+      <div class="top--buttons">
+        <div class="card card-button borow--book">
+          <p>Add Book</p>
+          <a href="Register.php">
+            <i class='bx bx-plus'></i>
+          </a>
         </div>
+        
+        <div class="card card-notif">
+          <i class='bx bxs-bell'></i>
+        </div>
+      </div>
 
         <div class="available">
         <h1 class="avail">Available Books</h1>

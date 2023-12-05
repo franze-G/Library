@@ -24,49 +24,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book`
+-- Table structure for table `borrow`
 --
 
-CREATE TABLE `book` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `borrow` (
+  `book_id` int(11) NOT NULL,
+  `id` varchar(20) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `student_number` varchar(100) NOT NULL,
+  `course` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `genre` varchar(100) NOT NULL,
-  `date_publish` varchar(100) NOT NULL,
-  `quantity` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `image` varchar(500) NOT NULL
+  `borrow_date` varchar(100) NOT NULL,
+  `return_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `book`
+-- Dumping data for table `borrow`
 --
 
-INSERT INTO `book` (`id`, `title`, `author`, `genre`, `date_publish`, `quantity`, `status`, `image`) VALUES
-(3, 'The Subtle Art', 'Mark Manson', 'Self-Help', '2023-09-06', '2', 'registered', '../Image/image656ca6be7f4fc_sublte.jpg'),
-(4, 'The Daily Stoic', 'Ryan Holiday ', 'Self-Help', '2023-12-13', '1', 'registered', '../Image/image656d0ecc5d0de_daily.jpg'),
-(5, 'OOP', 'Lex Wew', 'Programming', '2023-12-05', '1', 'registered', '../Image/image656d107738c4e_sublte.jpg'),
-(6, 'Software Eng.', 'Chopwer', 'TECH', '2023-12-05', '10', 'registered', '../Image/image656d11e0e3d59_sublte.jpg');
+INSERT INTO `borrow` (`book_id`, `id`, `fullname`, `student_number`, `course`, `title`, `author`, `genre`, `borrow_date`, `return_date`) VALUES
+(3, '43', '', '', '', 'The Subtle Art', 'Mark Manson', 'Self-Help', '2023-12-05', '2023-12-08'),
+(43, '', '', '', '', '3', '', '', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `book`
+-- Indexes for table `borrow`
 --
-ALTER TABLE `book`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `borrow`
+  ADD PRIMARY KEY (`book_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `book`
+-- AUTO_INCREMENT for table `borrow`
 --
-ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `borrow`
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

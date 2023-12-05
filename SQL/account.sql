@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2023 at 05:48 PM
+-- Generation Time: Dec 05, 2023 at 09:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,16 +31,17 @@ CREATE TABLE `account` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `pass` varchar(100) NOT NULL,
-  `user_type` int(11) NOT NULL
+  `user_type` int(11) NOT NULL,
+  `approval_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `pass`, `user_type`) VALUES
-(43, '202119379', '21232f297a57a5a743894a0e4a801fc3', 1),
-(44, '202014886', 'cd73502828457d15655bbd7a63fb0bc8', 2);
+INSERT INTO `account` (`id`, `username`, `pass`, `user_type`, `approval_status`) VALUES
+(43, '202119379', '21232f297a57a5a743894a0e4a801fc3', 1, ''),
+(51, '2023', 'd41d8cd98f00b204e9800998ecf8427e', 1, 'approved');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +61,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

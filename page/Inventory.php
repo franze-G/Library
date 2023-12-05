@@ -50,9 +50,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fa-solid fa-book"></i>
-            <span>Register Book</span>
+          <a href="account.php">
+            <i class="fa-solid fa-square-plus"></i>
+            <span>Account Management</span>
           </a>
         </li>
         <li>
@@ -110,6 +110,7 @@
                             echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                             echo '<td>' . $row['quantity'] . '</td>';
                             echo '<td>' . $row['status'] . '</td>';
+                            echo '<td><a class="" href="Borrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
                             // Replace this line in the table body
                             echo '</tr>';
                         }
@@ -134,7 +135,7 @@
     $(document).ready(function() {
         $('#userTable').DataTable();
     });
-</script>
+    </script>
 
 </body>
 </html>

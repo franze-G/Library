@@ -1,3 +1,43 @@
+<?php
+include('../configuration/config.php');
+
+if (isset($_POST['submit'])) {
+    $fname = $_POST['fullname'];
+    $studentno = $_POST['studentnum'];
+    $email = $_POST['email'];
+    $course = $_POST['course'];
+    $type = $_POST['type'];
+    $pass = md5($_POST['password']); // Replace with more secure password hashing
+
+    // Default status for a new user is 'pending'
+    $approvalStatus = 'pending';
+
+    $checkSql = "SELECT * FROM `user` 
+                WHERE (`fullname` = '$fname' AND `student_number` != '$studentno') 
+                AND (`fullname` != '$fname' AND `student_number` = '$studentno')";
+
+    $checkResult = $conn->query($checkSql);
+
+    if ($checkResult->num_rows > 0) {
+        echo "Account Already Exist.";
+    } else {
+        // Insert user data into 'user' table with 'pending' status
+        $userSql = "INSERT INTO `user` (`fullname`, `student_number`, `email`, `course`, `approval_status`,`user_type`)
+                    VALUES ('$fname', '$studentno', '$email', '$course', '$approvalStatus','$type')";
+
+        $userResult = $conn->query($userSql);
+
+        if ($userResult === TRUE) {
+            echo "User record successfully submitted. Awaiting admin approval.";
+        } else {
+            echo "Error: " . $userSql . "<br>" . $conn->error;
+        }
+    }
+
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,13 +58,14 @@
       <div class="cont-form signup">
         <div class="form-content">
           <header>Create Account</header>
-          <form id="RegisForm">
+          <form id="" action="" method="post">
             <div class="field input-field">
               <input
                 id="name-signup"
+                name="fullname"
                 type="text"
                 class="input"
-                placeholder="Display Name"
+                placeholder="Enter Fullname"
               />
             </div>
 
@@ -32,34 +73,55 @@
               <input
                 id="email-signup"
                 type="email"
+                name="email"
                 class="input"
-                placeholder="Email"
+                placeholder="Enter Email"
               />
             </div>
 
             <div class="field input-field">
               <input
-                id="password-signup"
-                type="password"
-                class="password"
-                placeholder="Create new password"
+                id="email-signup"
+                type="text"
+                name="studentnum"
+                class="input"
+                placeholder="Enter Student number"
               />
-              <i class="bx bx-hide eye-icon"></i>
+            </div>
+
+            <div class="field input-field">
+              <input
+                id="email-signup"
+                type="text"
+                name="course"
+                class="input"
+                placeholder="Enter course"
+              />
+            </div>
+
+            <div class="field input-field">
+              <select name="type"  placeholder="Category of item">
+                    <option value="" disabled selected>Select type of user</option>
+                    <option value="1">ADMIN</option>
+                    <option value="2">STUDENT</option>
+                </select>
             </div>
 
             <div class="field input-field">
               <input
                 id="passwordConf-signup"
                 type="password"
+                name="password"
                 class="password"
-                placeholder="Confirm password"
+                placeholder="Enter password"
               />
             </div>
 
             <div class="field button-field">
               <!-- add type="submit"-->
               <!-- add onclick="RegisterUser(evt)"-->
-              <button id="btnConfirm" type="submit">Signup</button>
+              <input type="submit" name="submit" value="REGISTER">
+
             </div>
           </form>
           <div class="form-link">
