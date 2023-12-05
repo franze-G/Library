@@ -115,8 +115,11 @@ body {
   color: var(--secondary);
 }
 .header--title span,
-h2 {
+.header--title p {
   font-size: var(--heading-Fsize);
+}
+.header--title p {
+  font-weight: bold;
 }
 .header--wrapper .user--info {
   display: flex;
@@ -173,7 +176,7 @@ h2 {
   width: 12%;
   margin-left: 15px;
   padding: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 .card-button i {
   font-size: 1.4rem;
@@ -190,16 +193,15 @@ h2 {
 
 .card {
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 32px 0 rgba(57, 85, 32, 0.37);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .card--content {
   padding: 10px;
-  width: 30%;
+  width: 32%;
+  gap: 10px;
   height: 140px;
 }
 .count {
@@ -210,4 +212,41 @@ h2 {
   font-size: var(--card-text-fs);
   font-weight: bold;
   word-wrap: break-word;
+}
+
+/* some--texts */
+
+.some--texts {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  padding: 10px 0 10px;
+}
+
+.left--text {
+  padding: 5px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  text-transform: uppercase;
+  font-size: larger;
+  margin-bottom: 10px;
+}
+
+.bestseller--button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 270px;
+  height: 70px;
+  padding: 10px;
+  background: var(--accent);
+  border: double var(--secondary);
+  border-width: 5px;
+  border-radius: 20px;
+  background-image: ;
 }

@@ -108,7 +108,7 @@
       <div class="header--wrapper">
         <div class="header--title">
           <span>Primary</span>
-          <h2>Dashboard</h2>
+          <p>Dashboard</p>
         </div>
         <div class="header--name">
           <p><?php echo strtoupper($fname); ?> </p>
@@ -178,6 +178,18 @@
           <div class="image--inside-the-card"></div>
         </div>
         </div>
+
+        <div class="some--texts">
+          <div class="left--text">
+            <p class="text">Check the best<br> selling books <br> of the year 2023!</p>
+            <div class="bestseller--button">View Bestsellers</div>
+            </div>
+          <div class="right--text">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam at cupiditate ullam, nemo nam dolores!</p>
+          </div>
+          
+        </div>
+
       </div>
     </div>
 
