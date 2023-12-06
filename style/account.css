@@ -151,7 +151,7 @@ tbody tr:hover {
 
 .status {
   background-color: #ebc474;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0.3rem;
   border-radius: 2rem;
   text-align: center;
 }
@@ -167,3 +167,27 @@ tbody tr:hover {
   padding: 0.4rem 0;
   border-radius: 2rem;
 } */
+
+.approve-btn {
+  background-color: #86e49d;
+  padding: 0.4rem 0.3rem;
+  border-radius: 2rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.approve-btn:hover {
+  background-color: #67b97b;
+}
+
+.decline-btn {
+  background-color: #d893a3;
+  padding: 0.4rem 0.3rem;
+  border-radius: 2rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.decline-btn:hover {
+  background-color: #bc7c8b;
+}
