@@ -8,6 +8,9 @@
     // current function (LOGIN, SIGNUP, ACCOUNT MANAGEMENT, ADD BOOK, BORROW - la pa backend hehe)
     // test mo yung sign up tas login ka gamit yung default account
 
+// 202119379 
+// admin
+
     include('../configuration/config.php');
 
     $msg = '';

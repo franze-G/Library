@@ -44,7 +44,12 @@
     <!-- confirm css -->
     <link rel="stylesheet" href="confirm.css" />
     <link rel="stylesheet" href="../style/dashboard.css" />
-    <title>User</title>
+    <!-- boxicons -->
+        <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Dashboard</title>
   </head>
   <body>
     <!-- dito mag reredirect yung user after login -->
@@ -103,15 +108,8 @@
       <div class="header--wrapper">
         <div class="header--title">
           <span>Primary</span>
-          <h2>Dashboard</h2>
+          <p>Dashboard</p>
         </div>
-
-      <div class="header">
-        <p><?php echo strtoupper($fname); ?> </p>
-        </div>
-
-      <div class="lostitems">
-            <h1 class="lost">Borrowed Books</h1>
         <div class="header--name">
           <p><?php echo strtoupper($fname); ?> </p>
         </div>
@@ -119,38 +117,81 @@
       
       <div class="top--buttons">
         <div class="card card-button borow--book">
-          <p>Add Book</p>
-          <a href="Register.php">
-            <i class='bx bx-plus'></i>
-          </a>
+          <p>Borrow Book</p>
+          <i class='bx bx-plus'></i>
         </div>
-        
         <div class="card card-notif">
           <i class='bx bxs-bell'></i>
         </div>
       </div>
 
-        <div class="available">
-        <h1 class="avail">Available Books</h1>
-        <?php
-            $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
-            $result = $conn->query($sql);
+      <div class="top--cards">
+        <div class="card card--content lost">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Borrowed Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
+        </div>
+        <div class="card card--content returned">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Returned Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
+        </div>
+        <div class="card card--content available">
+          <div class="card--textholder">
+            <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $result = $conn->query($sql);
+              if ($result && $result->num_rows > 0) {
+                  $row = $result->fetch_assoc();
+                  $bookCount = $row['bookCount'];
+                  echo "<p class='count'>$bookCount</p>";
+              } else {
+                  echo "Error fetching book count: " . $conn->error;
+              }
+            ?>
+            <p class="statement">Available Books</p>
+          </div>
+          <div class="image--inside-the-card"></div>
+        </div>
+        </div>
 
-            if ($result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $bookCount = $row['bookCount'];
+        <div class="some--texts">
+          <div class="left--text">
+            <p class="text">Check the best<br> selling books <br> of the year 2023!</p>
+            <div class="bestseller--button">View Bestsellers</div>
+            </div>
+          <div class="right--text">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam at cupiditate ullam, nemo nam dolores!</p>
+          </div>
+          
+        </div>
 
-                echo "<p class='count'>$bookCount</p>";
-            } else {
-                echo "Error fetching book count: " . $conn->error;
-            }
-        ?>
-</div>
-
-
-    <!-- firebase -->
-    <script type="module" src="/tunesc-vs/auth/signin.js"></script>
-    <script type="module" src="/tunesc-vs/auth/signup.js"></script>
+      </div>
+    </div>
 
     <!-- fontawesome icons -->
     <script
