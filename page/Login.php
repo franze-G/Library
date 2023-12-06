@@ -1,41 +1,32 @@
-<?php   
-    //default account:
-    //202119379 - username
-    //admin - password
-
-    //binago ko structure ng table dreiii kaya drop mo yung recent tas import mo yung mga bago pero same parin ng DB name "library". inupload ko sa SQL folder
-
-    // current function (LOGIN, SIGNUP, ACCOUNT MANAGEMENT, ADD BOOK, BORROW - la pa backend hehe)
-    // test mo yung sign up tas login ka gamit yung default account
+<?php
 
 // 202119379 
 // admin
-
-    include('../configuration/config.php');
-
+    
+    include('../configuration/config.php'); 
     $msg = '';
 
-    if (isset($_COOKIE['token'])) {
-    $id = $_COOKIE['token'];
-    $sql = "SELECT * FROM account WHERE id=$id";
-    if ($rs = $conn->query($sql)) {
-        $row = $rs->fetch_assoc();
-        $usertype = $row['user_type'];
-        $userid = $row['id'];
-        switch ($usertype) {
-            case 1:
-                header("location:Dashboard.php");
-                break;
-            case 2:
-                header("location:");
-                break;
+      if (isset($_COOKIE['token'])) {
+        $id = $_COOKIE['token'];
+        $sql = "SELECT * FROM account WHERE id=$id";
+          if ($rs = $conn->query($sql)) {
+            $row = $rs->fetch_assoc();
+            $usertype = $row['user_type'];
+            $userid = $row['id'];
+            switch ($usertype) {
+                case 1:
+                    header("location:Dashboard.php");
+                    break;
+                case 2:
+                    header("location:");
+                    break;
+            }
+        } else {
+            header("location:logout.php");
         }
     } else {
-        header("location:logout.php");
+        echo $conn->error;
     }
-} else {
-    echo $conn->error;
-}
 
     if (isset($_POST['idnum'], $_POST['password'])) {
     $UN = $_POST['idnum'];
@@ -94,7 +85,7 @@
       <div class="cont-form login">
         <div class="form-content">
           <header>Aklat-Aklatan</header>
-          <form id="" action="#" method="post">
+          <form id="" action="" method="post">
             <div class="field input-field">
               <input
                 id="idnum"

@@ -59,13 +59,13 @@
       <div class="logo"></div>
       <ul class="menu">
         <li class="active">
-          <a href="UserProfile.html">
+          <a href="">
             <i class="fa-solid fa-address-book"></i>
             <span>Profile</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="Dashboard.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>

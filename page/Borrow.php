@@ -59,13 +59,42 @@
             header("location: Inventory.php");
             exit();
         }
-        $stmt->close();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Assuming you have form fields like 'borrower_name', 'borrow_date', etc.
+            $borrowerName = $_POST['fullname'];
+            $studentnum = $_POST['student_number'];
+            $course = $_POST['course'];
+            $title = $_POST['book_title'];
+            $author = $_POST['author'];
+            $genre = $_POST['genre'];
+            $borrowDate = $_POST['borrow_date'];
+            $return = $_POST['due_date'];
+
+            // Insert into the 'borrow' table
+           // Assuming 'id' is an auto-incremented primary key
+// Assuming 'book_id' is an integer and the rest are strings
+$insertSql = "INSERT INTO borrow (id, fullname, student_number, course, title, author, genre, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$insertStmt = $conn->prepare($insertSql);
+$insertStmt->bind_param("issssssss",$userid, $borrowerName, $studentnum, $course, $title, $author, $genre, $borrowDate, $return);
+
+
+            if ($insertStmt->execute()) {
+                // Successful insertion, you can redirect or perform additional actions
+                header("location: Inventory.php");
+                exit();
+            } else {
+                // Error during insertion, handle accordingly
+                echo "Error: " . $insertStmt->error;
+            }
+        
+            $insertStmt->close();
+        }
     } else {
         // ID not provided, handle the error or redirect
         header("location: Inventory.php");
         exit();
     }
-    
 // The $insertStmt variable is not defined, so it should be removed
 // $insertStmt->close();
 ?>
@@ -91,6 +120,9 @@
                 <header>Book Borrow Form</header>
                 <form id="" action="" method="post">
                     <!-- Display user's full name, course, and student number -->
+
+                    <input type="hidden" name="book_id" value="<?php echo $bookId; ?>">
+
                     <div class="field input-field">
                         <input 
                             type="text" 
