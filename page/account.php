@@ -52,12 +52,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- confirm css -->
     <link rel="stylesheet" href="confirm.css" />
-    <link rel="stylesheet" href="../style/dashboard.css" />
-
-    <!-- jquery datatable -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="../style/account.css">
 
     <title>User</title>
   </head>
@@ -114,34 +109,38 @@
       </ul>
     </div>
 
-    <div class="content">
-        <h1>Account Management</h1>
+    <div class="main-content">
 
-        <table id="userTable" class="display">
+      <div class="table">
+        <div class="table--header">
+          <h1>Account Management</h1>
+        </div>
+        <div class="table--body">
+          <table>
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Fullname</th>
-                    <th>Student Number</th>
-                    <th>Email</th>
-                    <th>Course</th>
-                    <th>User Type</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Student Number</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>User Type</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-             <?php
+              <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr>';
-                        echo '<td>' . $row['id'] . '</td>';
+                        echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
                         echo '<td>' . $row['fullname'] . '</td>';
                         echo '<td>' . $row['student_number'] . '</td>';
                         echo '<td>' . $row['email'] . '</td>';
                         echo '<td>' . $row['course'] . '</td>';
                         echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
-                        echo '<td>' . $row['approval_status'] . '</td>';
+                        echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
                         echo '<td><a class="approve-btn" href="?action=approve&user_id=' . $row['id'] . '">Approve</a>';
                         echo ' <a class="decline-btn" href="?action=decline&user_id=' . $row['id'] . '">Decline</a></td>';
                         echo '</tr>';
@@ -150,26 +149,17 @@
                     echo '<tr><td colspan="7">No pending accounts.</td></tr>';
                 }
                 ?>
-            </tbody>
-        </table>
+              </tbody>
+            </table>
+          </div>
+      </div>
     </div>
-
-
-          <!-- firebase -->
-    <script type="module" src="/tunesc-vs/auth/signin.js"></script>
-    <script type="module" src="/tunesc-vs/auth/signup.js"></script>
 
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"
       crossorigin="anonymous"
     ></script>
-
-    <script>
-    $(document).ready(function() {
-        $('#userTable').DataTable();
-    });
-    </script>
 
 </body>
 </html>
