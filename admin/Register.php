@@ -17,6 +17,22 @@ if (isset($_POST['submit'])) {
 
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetPath)) {
             // Image uploaded successfully, you can now use $targetPath in your database query
+
+            // Check if a book with the same author already exists
+            $checkSql = "SELECT * FROM `book` WHERE `author` = '$author'";
+            $checkResult = $conn->query($checkSql);
+
+            if ($checkResult->num_rows > 0) {
+                // Author exists, check if the same title exists
+                while ($row = $checkResult->fetch_assoc()) {
+                    if ($row['title'] === $title) {
+                        echo "Book already exist.";
+                        exit(); // Exit the script if a matching record is found
+                    }
+                }
+            }
+
+            // Insert book data into 'book' table
             $sql = "INSERT INTO `book`(`title`, `author`, `genre`, `date_publish`, `quantity`, `status`, `image`)
                     VALUES ('$title', '$author', '$genre', '$pdate', '$quantity', 'registered', '$targetPath')";
 
@@ -24,9 +40,9 @@ if (isset($_POST['submit'])) {
 
             if ($result === TRUE) {
                 echo "Record successfully submitted.";
-                
-                // Redirect to the book inventory pero may delay ng 1sec.
-                echo '<meta http-equiv="refresh" content="3;url=  Inventory.php" />';
+
+                // Redirect to the book inventory with a delay of 3 seconds
+                echo '<meta http-equiv="refresh" content="3;url=Inventory.php" />';
                 exit(); // Ensure that no further code is executed after the redirect
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -39,7 +55,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>

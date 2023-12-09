@@ -56,9 +56,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
+          <a href="create.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
           </a>
         </li>
         <li>
@@ -90,7 +90,6 @@
                     <th>Publish Date</th>
                     <th>Quantity</th>
                     <th>Status</th>
-                    <th>Action</th>
                     <!-- Add more columns as needed -->
                 </tr>
             </thead>
@@ -110,8 +109,6 @@
                             echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                             echo '<td>' . $row['quantity'] . '</td>';
                             echo '<td>' . $row['status'] . '</td>';
-                            echo '<td><a class="" href="Borrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
-                            // Replace this line in the table body
                             echo '</tr>';
                         }
                     }

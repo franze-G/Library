@@ -1,5 +1,5 @@
 <?php   
-    include('../configuration/config.php');
+    include('config.php');
 
     $msg = '';
 
@@ -12,7 +12,7 @@
         $userid = $row['id'];
         switch ($usertype) {
             case 1:
-                header("location:../page/Dashboard.php");
+                header("location:../admin/Dashboard.php");
                 break;
             case 2:
                 header("location:user.php");
@@ -41,7 +41,7 @@
                     setcookie('token', $userid);
                     switch ($usertype) {
                         case 1:
-                            header("location:../page/Dashboard.php");
+                            header("location:../admin/Dashboard.php");
                             exit();
                         case 2:
                             header("location:user.php");

@@ -1,32 +1,29 @@
-<?php
+<?php   
+    include('../configuration/config.php');
 
-// 202119379 
-// admin
-    
-    include('../configuration/config.php'); 
     $msg = '';
 
-      if (isset($_COOKIE['token'])) {
-        $id = $_COOKIE['token'];
-        $sql = "SELECT * FROM account WHERE id=$id";
-          if ($rs = $conn->query($sql)) {
-            $row = $rs->fetch_assoc();
-            $usertype = $row['user_type'];
-            $userid = $row['id'];
-            switch ($usertype) {
-                case 1:
-                    header("location:Dashboard.php");
-                    break;
-                case 2:
-                    header("location:");
-                    break;
-            }
-        } else {
-            header("location:logout.php");
+    if (isset($_COOKIE['token'])) {
+    $id = $_COOKIE['token'];
+    $sql = "SELECT * FROM account WHERE id=$id";
+    if ($rs = $conn->query($sql)) {
+        $row = $rs->fetch_assoc();
+        $usertype = $row['user_type'];
+        $userid = $row['id'];
+        switch ($usertype) {
+            case 1:
+                header("location:Dashboard.php");
+                break;
+            case 2:
+                header("location:user.php");
+                break;
         }
     } else {
-        echo $conn->error;
+        header("location:logout.php");
     }
+} else {
+    echo $conn->error;
+}
 
     if (isset($_POST['idnum'], $_POST['password'])) {
     $UN = $_POST['idnum'];
@@ -47,7 +44,7 @@
                             header("location:Dashboard.php");
                             exit();
                         case 2:
-                            header("location:");
+                            header("location:user.php");
                             exit();
                     }
                 } else {

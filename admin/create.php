@@ -1,41 +1,45 @@
 <?php
-include('../configuration/config.php');
+  include('../configuration/config.php');
 
-if (isset($_POST['submit'])) {
-    $fname = $_POST['fullname'];
-    $studentno = $_POST['studentnum'];
-    $email = $_POST['email'];
-    $course = $_POST['course'];
-    $type = $_POST['type'];
-    $pass = md5($_POST['password']); // Replace with more secure password hashing
+  if (isset($_POST['submit'])) {
+      $fname = $_POST['fullname'];
+      $idnumber = $_POST['idnumber'];
+      $email = $_POST['email'];
+      $department = $_POST['department'];
+      $type = $_POST['type'];
+      $pass = md5($_POST['password']); // Replace with more secure password hashing
 
-    // Default status for a new user is 'pending'
-    $approvalStatus = 'pending';
+      // Default status for a new user is 'pending'
+      $approvalStatus = 'pending';
 
-    $checkSql = "SELECT * FROM `user` 
-                WHERE (`fullname` = '$fname' AND `student_number` != '$studentno') 
-                AND (`fullname` != '$fname' AND `student_number` = '$studentno')";
+      $checkSql = "SELECT * FROM `user` 
+                  WHERE (`fullname` = '$fname' OR `student_number` = '$idnumber')";
 
-    $checkResult = $conn->query($checkSql);
+      $checkResult = $conn->query($checkSql);
 
-    if ($checkResult->num_rows > 0) {
-        echo "Account Already Exist.";
-    } else {
-        // Insert user data into 'user' table with 'pending' status
-        $userSql = "INSERT INTO `user` (`fullname`, `student_number`, `email`, `course`, `approval_status`,`user_type`)
-                    VALUES ('$fname', '$studentno', '$email', '$course', '$approvalStatus','$type')";
+      if ($checkResult->num_rows > 0) {
+          echo "Account Already Exists.";
+      } else {
+          // Insert user data into 'user' table with 'pending' status
+          $adminSql = "INSERT INTO `admin` (`fullname`, `id_number`, `email`, `department`, `approval_status`, `user_type` )
+                      VALUES ('$fname', '$idnumber', '$email', '$department', '$approvalStatus', '$type')";
 
-        $userResult = $conn->query($userSql);
+          $adminResult = $conn->query($adminSql);
 
-        if ($userResult === TRUE) {
-            echo "User record successfully submitted. Awaiting admin approval.";
-        } else {
-            echo "Error: " . $userSql . "<br>" . $conn->error;
-        }
-    }
+          if ($adminResult === TRUE) {
+              echo "User record successfully submitted. Awaiting admin approval.";
 
-    $conn->close();
-}
+              $userId = $conn->insert_id;
+
+              $accountSql = "INSERT INTO 'account' (`id`,`username`,`pass`,`user_type`,`approval_status`)
+              VALUES ('$userId','$idnumber','$pass','$type','$approvalStatus')";
+          } else {
+              echo "Error: " . $adminSql . "<br>" . $conn->error;
+          }
+      }
+
+      $conn->close();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +76,16 @@ if (isset($_POST['submit'])) {
             <div class="field input-field">
               <input
                 id="email-signup"
+                type="number"
+                name="idnumber"
+                class="input"
+                placeholder="Enter ID number"
+              />
+            </div>
+
+            <div class="field input-field">
+              <input
+                id="email-signup"
                 type="email"
                 name="email"
                 class="input"
@@ -83,28 +97,10 @@ if (isset($_POST['submit'])) {
               <input
                 id="email-signup"
                 type="text"
-                name="studentnum"
+                name="department"
                 class="input"
-                placeholder="Enter Student number"
+                placeholder="Enter Department"
               />
-            </div>
-
-            <div class="field input-field">
-              <input
-                id="email-signup"
-                type="text"
-                name="course"
-                class="input"
-                placeholder="Enter course"
-              />
-            </div>
-
-            <div class="field input-field">
-              <select name="type"  placeholder="Category of item">
-                    <option value="" disabled selected>Select type of user</option>
-                    <option value="1">ADMIN</option>
-                    <option value="2">STUDENT</option>
-                </select>
             </div>
 
             <div class="field input-field">
@@ -117,6 +113,13 @@ if (isset($_POST['submit'])) {
               />
             </div>
 
+            <div class="field input-field">
+              <select name="type"  placeholder="Category of item">
+                    <option value="" disabled selected>Select type of user</option>
+                    <option value="1">ADMIN</option>
+                    <option value="2">STAFF</option>
+                </select>
+
             <div class="field button-field">
               <!-- add type="submit"-->
               <!-- add onclick="RegisterUser(evt)"-->
@@ -124,12 +127,6 @@ if (isset($_POST['submit'])) {
 
             </div>
           </form>
-          <div class="form-link">
-            <span
-              >Already have an account?
-              <a href="Login.php" class="link signup-link">Signin</a>
-            </span>
-          </div>
         </div>
       </div>
     </section>
@@ -142,3 +139,5 @@ if (isset($_POST['submit'])) {
     <script src="/tunesc-vs/components/showPass.js"></script>
   </body>
 </html>
+
+

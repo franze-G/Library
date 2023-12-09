@@ -71,12 +71,10 @@
             $borrowDate = $_POST['borrow_date'];
             $return = $_POST['due_date'];
 
-            // Insert into the 'borrow' table
-           // Assuming 'id' is an auto-incremented primary key
-// Assuming 'book_id' is an integer and the rest are strings
-$insertSql = "INSERT INTO borrow (id, fullname, student_number, course, title, author, genre, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-$insertStmt = $conn->prepare($insertSql);
-$insertStmt->bind_param("issssssss",$userid, $borrowerName, $studentnum, $course, $title, $author, $genre, $borrowDate, $return);
+            
+            $insertSql = "INSERT INTO borrow (id, fullname, student_number, course, title, author, genre, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertStmt = $conn->prepare($insertSql);
+            $insertStmt->bind_param("issssssss",$userid, $borrowerName, $studentnum, $course, $title, $author, $genre, $borrowDate, $return);
 
 
             if ($insertStmt->execute()) {

@@ -24,14 +24,14 @@
                     }
                 }else{
                     //token not exist
-                    header("location:login.php");
+                    header("location:");
                 }
                 }
                 else{
                     echo $conn->error;
                 }
             }else{
-                header("location:login.php");
+                header("location:");
             }
 
 ?>
@@ -41,7 +41,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../style/dashboard.css" />
+    <link rel="stylesheet" href="../style/Staff.css" />
     <link rel="stylesheet" href="../style/">
     <!-- boxicons -->
         <link
@@ -77,6 +77,12 @@
           </a>
         </li>
         <li>
+          <a href="create.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
+          </a>
+        </li>
+        <li>
           <a href="account.php">
             <i class="fa-solid fa-square-plus"></i>
             <span>Account Management</span>
@@ -106,17 +112,16 @@
     <div class="main--content">
       <div class="header--wrapper">
         <div class="header--title">
-          <span>Primary</span>
+          <span>Staff</span>
           <p>Dashboard</p>
         </div>
         <div class="header--name">
-          <p><?php echo strtoupper($fname); ?> </p>
         </div>
       </div>
       
       <div class="top--buttons">
         <div class="card card-button borow--book">
-          <p>Borrow Book</p>
+          <a href="Register.php"><p>Add Book</p></a>
           <i class='bx bx-plus'></i>
         </div>
         <div class="card card-notif">

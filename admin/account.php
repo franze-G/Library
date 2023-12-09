@@ -1,31 +1,25 @@
 <?php
     
     include('../configuration/config.php');
-
     // Handle approval or decline actions
     if (isset($_GET['action']) && isset($_GET['user_id'])) {
         $action = $_GET['action'];
         $userId = $_GET['user_id'];
-
         if ($action === 'approve') {
             // Get user details from the 'user' table
             $userQuery = "SELECT * FROM user WHERE id = $userId";
             $userResult = $conn->query($userQuery);
-
             if ($userResult->num_rows > 0) {
                 $userData = $userResult->fetch_assoc();
                 $studentNumber = $userData['student_number'];
                 $password = md5($userData['password']); // Securely hash the password using MD5
                 $userType = $userData['user_type']; // Assuming 'user_type' is the column in 'user' table indicating user type
-
                 // Update the approval status to 'approved'
                 $updateSql = "UPDATE user SET approval_status = 'approved' WHERE id = $userId";
                 $conn->query($updateSql);
-
                 // Insert user data into 'account' table with the username as student_number, user type from signup, and approval status
                 $insertAccountSql = "INSERT INTO account (username, pass, user_type, approval_status) VALUES ('$studentNumber', '$password', '$userType', 'approved')";
                 $conn->query($insertAccountSql);
-
                 // You may perform additional actions if needed
             }
         } elseif ($action === 'decline') {
@@ -33,12 +27,10 @@
             $updateSql = "UPDATE user SET approval_status = 'declined' WHERE id = $userId";
             $conn->query($updateSql);
         }
-
         // Redirect back to the user list page
         header("Location: account.php");
         exit();
     }
-
     // Fetch only pending user details from the database
     $sql = "SELECT * FROM user WHERE approval_status = 'Pending'";
     $result = $conn->query($sql);
@@ -57,9 +49,6 @@
     <title>User</title>
   </head>
   <body>
-    <!-- dito mag reredirect yung user after login -->
-
-    <!-- sidebar -->
 
     <div class="sidebar">
       <div class="logo"></div>
@@ -78,7 +67,7 @@
         </li>
         <li>
           <a href="Inventory.php">
-            <i class="fa-solid fa-square-plus"></i>
+            <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
         </li>
@@ -89,9 +78,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
+          <a href="create.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
           </a>
         </li>
         <li>
