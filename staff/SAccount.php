@@ -7,32 +7,32 @@
         $userId = $_GET['user_id'];
         if ($action === 'approve') {
             // Get user details from the 'user' table
-            $userQuery = "SELECT * FROM `admin` WHERE id = $userId";
+            $userQuery = "SELECT * FROM user WHERE id = $userId";
             $userResult = $conn->query($userQuery);
             if ($userResult->num_rows > 0) {
                 $userData = $userResult->fetch_assoc();
-                $idnumber = $userData['id_number'];
+                $studentNumber = $userData['student_number'];
                 $password = md5($userData['password']); // Securely hash the password using MD5
                 $userType = $userData['user_type']; // Assuming 'user_type' is the column in 'user' table indicating user type
                 // Update the approval status to 'approved'
-                $updateSql = "UPDATE `admin` SET approval_status = 'approved' WHERE id = $userId";
+                $updateSql = "UPDATE user SET approval_status = 'approved' WHERE id = $userId";
                 $conn->query($updateSql);
                 // Insert user data into 'account' table with the username as student_number, user type from signup, and approval status
-                $insertAccountSql = "INSERT INTO account (username, pass, user_type, approval_status) VALUES ('$idnumber', '$password', '$userType', 'approved')";
+                $insertAccountSql = "INSERT INTO account (username, pass, user_type, approval_status) VALUES ('$studentNumber', '$password', '$userType', 'approved')";
                 $conn->query($insertAccountSql);
                 // You may perform additional actions if needed
             }
         } elseif ($action === 'decline') {
             // Update the approval status to 'declined'
-            $updateSql = "UPDATE `admin` SET approval_status = 'declined' WHERE id = $userId";
+            $updateSql = "UPDATE user SET approval_status = 'declined' WHERE id = $userId";
             $conn->query($updateSql);
         }
         // Redirect back to the user list page
-        header("Location: Account.php");
+        header("Location: SAccount.php");
         exit();
     }
     // Fetch only pending user details from the database
-    $sql = "SELECT * FROM `admin` WHERE approval_status = 'Pending'";
+    $sql = "SELECT * FROM user WHERE approval_status = 'Pending'";
     $result = $conn->query($sql);
 ?>
 
@@ -50,37 +50,43 @@
   </head>
   <body>
 
-    <div class="sidebar">
+  <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
         <li class="active">
-          <a href="UserProfile.html">
+          <a href="">
             <i class="fa-solid fa-address-book"></i>
             <span>Profile</span>
           </a>
         </li>
         <li>
-          <a href="Dashboard.php">
+          <a href="Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="Inventory.php">
+          <a href="SInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
         </li>
         <li>
-          <a href="account.php">
-            <i class="fa-solid fa-book"></i>
+          <a href="SCreate.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
+          </a>
+        </li>
+        <li>
+          <a href="SAccount.php">
+            <i class="fa-solid fa-square-plus"></i>
             <span>Account Management</span>
           </a>
         </li>
         <li>
-          <a href="create.php">
-            <i class="fa-solid fa-user-plus"></i>
-            <span>Create Account</span>
+          <a href="#">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>Due Dates</span>
           </a>
         </li>
         <li>
@@ -112,7 +118,7 @@
                 <th>Full Name</th>
                 <th>Student Number</th>
                 <th>Email</th>
-                <th>Department</th>
+                <th>Course</th>
                 <th>User Type</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -125,9 +131,9 @@
                         echo '<tr>';
                         echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
                         echo '<td>' . $row['fullname'] . '</td>';
-                        echo '<td>' . $row['id_number'] . '</td>';
+                        echo '<td>' . $row['student_number'] . '</td>';
                         echo '<td>' . $row['email'] . '</td>';
-                        echo '<td>' . $row['department'] . '</td>';
+                        echo '<td>' . $row['course'] . '</td>';
                         echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
                         echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
                         echo '<td><a class="approve-btn" href="?action=approve&user_id=' . $row['id'] . '">Approve</a>';

@@ -1,40 +1,40 @@
-  <?php
-      include('../configuration/config.php');
+<?php
+    include('../configuration/config.php');
 
-      
-      if(isset($_COOKIE['token'])){
-          $id=$_COOKIE['token'];
+    
+    if(isset($_COOKIE['token'])){
+        $id=$_COOKIE['token'];
 
-          $sql ="SELECT account.*, admin.fullname
-                FROM account 
-                JOIN `admin` ON account.id = admin.id 
-                WHERE account.id=$id";
+        $sql ="SELECT account.*, admin.fullname
+               FROM account 
+               JOIN `admin` ON account.id = admin.id 
+               WHERE account.id=$id";
 
-              if($rs=$conn->query($sql)){
-                  if($rs->num_rows>0){
-                      $row=$rs->fetch_assoc();
-                      $usertype=$row['user_type'];
-                      $userid=$row['id'];
-                      $fname=$row['fullname']; // Add this line to get the user's first name
-              // Add this line to get the user's last name
-                      switch($usertype){
-                      case 1 : header("location:"); break;
+            if($rs=$conn->query($sql)){
+                if($rs->num_rows>0){
+                    $row=$rs->fetch_assoc();
+                    $usertype=$row['user_type'];
+                    $userid=$row['id'];
+                    $fname=$row['fullname']; // Add this line to get the user's first name
+            // Add this line to get the user's last name
+                    switch($usertype){
+                    case 1 : header("location:"); break;
 
-                      //case 2 : header("location:../student/user.php"); break;
-                      }
-                  }else{
-                      //token not exist
-                      header("location:");
-                  }
-                  }
-                  else{
-                      echo $conn->error;
-                  }
-              }else{
-                  header("location:");
-              }
+                    //case 2 : header("location:../student/user.php"); break;
+                    }
+                }else{
+                    //token not exist
+                    header("location:");
+                }
+                }
+                else{
+                    echo $conn->error;
+                }
+            }else{
+                header("location:");
+            }
 
-  ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,25 +65,25 @@
           </a>
         </li>
         <li>
-          <a href="Dashboard.php">
+          <a href="Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="Inventory.php">
+          <a href="../staff/SInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
         </li>
         <li>
-          <a href="create.php">
+          <a href="../staff/SCreate.php">
             <i class="fa-solid fa-user-plus"></i>
             <span>Create Account</span>
           </a>
         </li>
         <li>
-          <a href="account.php">
+          <a href="../staff/SAccount.php">
             <i class="fa-solid fa-square-plus"></i>
             <span>Account Management</span>
           </a>
@@ -112,7 +112,7 @@
     <div class="main--content">
       <div class="header--wrapper">
         <div class="header--title">
-          <span>Admin</span>
+          <span>Staff</span>
           <p>Dashboard</p>
         </div>
         <div class="header--name">
@@ -121,6 +121,10 @@
       </div>
       
       <div class="top--buttons">
+        <div class="card card-button borow--book">
+          <a href="../staff/SRegister.php"><p>Add Book</p></a>
+          <i class='bx bx-plus'></i>
+        </div>
         <div class="card card-notif">
           <i class='bx bxs-bell'></i>
         </div>

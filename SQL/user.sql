@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 09:23 PM
+-- Generation Time: Dec 10, 2023 at 02:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,17 +38,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `fullname`, `student_number`, `email`, `course`, `approval_status`, `user_type`) VALUES
-(43, 'FRANZE GARCIA', '202119379', 'franze@gmail.com', 'BS CPSCI', '', ''),
-(52, 'YAHJ OLIVERIA', '2023', 'yahj@gmail.com', 'BS AVIONICS', 'approved', '1'),
-(53, 'CARL ANDREI', '2024', 'carl@gmail.com', 'BS CPSCIE', 'pending', '1'),
-(54, 'RJ CRUZ', '2025', 'rj@gmail.com', 'BS AVIONICS', 'pending', '2'),
-(55, 'ANBEA LIM', '202020', 'anbea@gmail.com', 'BS CPSCIE', 'pending', '2');
-
---
 -- Indexes for dumped tables
 --
 
@@ -66,7 +55,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

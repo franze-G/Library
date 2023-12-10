@@ -27,38 +27,43 @@
     <!-- dito mag reredirect yung user after login -->
 
     <!-- sidebar -->
-
     <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
         <li class="active">
-          <a href="UserProfile.html">
+          <a href="">
             <i class="fa-solid fa-address-book"></i>
             <span>Profile</span>
           </a>
         </li>
         <li>
-          <a href="Dashboard.php">
+          <a href="Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="SInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
         </li>
         <li>
-          <a href="account.php">
+          <a href="SCreate.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
+          </a>
+        </li>
+        <li>
+          <a href="SAccount.php">
             <i class="fa-solid fa-square-plus"></i>
             <span>Account Management</span>
           </a>
         </li>
         <li>
-          <a href="create.php">
-            <i class="fa-solid fa-user-plus"></i>
-            <span>Create Account</span>
+          <a href="#">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>Due Dates</span>
           </a>
         </li>
         <li>
@@ -92,6 +97,7 @@
                     <th>Publish Date</th>
                     <th>Quantity</th>
                     <th>Status</th>
+                    <th>Action</th>
                     <!-- Add more columns as needed -->
                 </tr>
             </thead>
@@ -113,6 +119,7 @@
                             echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                             echo '<td>' . $row['quantity'] . '</td>';
                             echo '<td>' . $row['status'] . '</td>';
+                            echo '<td><a class="" href="SBorrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
                             echo '</tr>';
                         }
                     }

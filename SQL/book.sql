@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 09:22 PM
+-- Generation Time: Dec 10, 2023 at 02:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -32,21 +32,13 @@ CREATE TABLE `book` (
   `title` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `genre` varchar(100) NOT NULL,
+  `version` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
   `date_publish` varchar(100) NOT NULL,
   `quantity` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL,
   `image` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `book`
---
-
-INSERT INTO `book` (`id`, `title`, `author`, `genre`, `date_publish`, `quantity`, `status`, `image`) VALUES
-(3, 'The Subtle Art', 'Mark Manson', 'Self-Help', '2023-09-06', '2', 'registered', '../Image/image656ca6be7f4fc_sublte.jpg'),
-(4, 'The Daily Stoic', 'Ryan Holiday ', 'Self-Help', '2023-12-13', '1', 'registered', '../Image/image656d0ecc5d0de_daily.jpg'),
-(5, 'OOP', 'Lex Wew', 'Programming', '2023-12-05', '1', 'registered', '../Image/image656d107738c4e_sublte.jpg'),
-(6, 'Software Eng.', 'Chopwer', 'TECH', '2023-12-05', '10', 'registered', '../Image/image656d11e0e3d59_sublte.jpg');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +58,7 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

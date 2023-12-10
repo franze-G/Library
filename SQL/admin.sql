@@ -24,41 +24,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `borrow`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `borrow` (
-  `book_id` int(11) NOT NULL,
-  `id` varchar(20) NOT NULL,
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `student_number` varchar(100) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `author` varchar(100) NOT NULL,
-  `genre` varchar(100) NOT NULL,
-  `borrow_date` varchar(100) NOT NULL,
-  `return_date` varchar(100) NOT NULL
+  `id_number` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `approval_status` varchar(100) NOT NULL,
+  `user_type` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `fullname`, `id_number`, `email`, `department`, `approval_status`, `user_type`) VALUES
+(13, 'FRANZE GARCIA', '202119379', 'franze@gmail.com', 'Science Department', 'approved', '1');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `borrow`
+-- Indexes for table `admin`
 --
-ALTER TABLE `borrow`
-  ADD PRIMARY KEY (`book_id`);
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `borrow`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `borrow`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

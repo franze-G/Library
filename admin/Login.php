@@ -1,31 +1,35 @@
-<?php   
-    include('../configuration/config.php');
+<?php
+include('../configuration/config.php');
 
-    $msg = '';
+$msg = '';
 
-    if (isset($_COOKIE['token'])) {
+if (isset($_COOKIE['token'])) {
     $id = $_COOKIE['token'];
     $sql = "SELECT * FROM account WHERE id=$id";
     if ($rs = $conn->query($sql)) {
         $row = $rs->fetch_assoc();
         $usertype = $row['user_type'];
-        $userid = $row['id'];
         switch ($usertype) {
             case 1:
                 header("location:Dashboard.php");
-                break;
+                exit();
             case 2:
-                header("location:user.php");
-                break;
+                // Replace with the appropriate page
+                header("location:Staff.php");
+                exit();
+            case 3:
+                header("location:student.php");
+                exit();
         }
     } else {
         header("location:logout.php");
+        exit();
     }
 } else {
-    echo $conn->error;
+    // echo $conn->error;
 }
 
-    if (isset($_POST['idnum'], $_POST['password'])) {
+if (isset($_POST['idnum'], $_POST['password'])) {
     $UN = $_POST['idnum'];
 
     $sql = "SELECT * FROM account WHERE username=?";
@@ -44,7 +48,11 @@
                             header("location:Dashboard.php");
                             exit();
                         case 2:
-                            header("location:user.php");
+                            // Replace with the appropriate page
+                            header("location:Staff.php");
+                            exit();
+                        case 3:
+                            header("location:student.php");
                             exit();
                     }
                 } else {
@@ -62,6 +70,7 @@
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

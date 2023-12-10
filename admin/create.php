@@ -12,8 +12,8 @@
       // Default status for a new user is 'pending'
       $approvalStatus = 'pending';
 
-      $checkSql = "SELECT * FROM `user` 
-                  WHERE (`fullname` = '$fname' OR `student_number` = '$idnumber')";
+      $checkSql = "SELECT * FROM `admin` 
+                  WHERE (`fullname` = '$fname' OR `id_number` = '$idnumber')";
 
       $checkResult = $conn->query($checkSql);
 
@@ -26,18 +26,23 @@
 
           $adminResult = $conn->query($adminSql);
 
-          if ($adminResult === TRUE) {
-              echo "User record successfully submitted. Awaiting admin approval.";
-
+          if (!$adminResult) {
+              echo "Error: " . $adminSql . "<br>" . $conn->error;
+          } else {
               $userId = $conn->insert_id;
 
-              $accountSql = "INSERT INTO 'account' (`id`,`username`,`pass`,`user_type`,`approval_status`)
-              VALUES ('$userId','$idnumber','$pass','$type','$approvalStatus')";
-          } else {
-              echo "Error: " . $adminSql . "<br>" . $conn->error;
+              $accountSql = "INSERT INTO `account` (`id`, `username`, `pass`, `user_type`, `approval_status`)
+              VALUES ('$userId', '$idnumber', '$pass', '$type', '$approvalStatus')";
+              $accountResult = $conn->query($accountSql);
+
+              if (!$accountResult) {
+                  echo "Error: " . $accountSql . "<br>" . $conn->error;
+              } else {
+                  echo "Account Created Successfully!";
+              }
           }
       }
-
+  
       $conn->close();
   }
 ?>
@@ -119,6 +124,7 @@
                     <option value="1">ADMIN</option>
                     <option value="2">STAFF</option>
                 </select>
+            </div>
 
             <div class="field button-field">
               <!-- add type="submit"-->
