@@ -42,23 +42,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- confirm css -->
-    <link rel="stylesheet" href="confirm.css" />
+    <!-- css -->
     <link rel="stylesheet" href="../style/account.css">
 
-    <title>User</title>
+    <title>Accounts</title>
   </head>
   <body>
 
     <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
-        <li class="active">
-          <a href="UserProfile.html">
-            <i class="fa-solid fa-address-book"></i>
-            <span>Profile</span>
-          </a>
-        </li>
         <li>
           <a href="Dashboard.php">
             <i class="fa-solid fa-chess-board"></i>
@@ -68,25 +61,19 @@
         <li>
           <a href="Inventory.php">
             <i class="fa-solid fa-book"></i>
-            <span>Book Inventory</span>
+            <span>Inventory</span>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="account.php">
             <i class="fa-solid fa-book"></i>
-            <span>Account Management</span>
+            <span>Accounts</span>
           </a>
         </li>
         <li>
           <a href="create.php">
             <i class="fa-solid fa-user-plus"></i>
-            <span>Create Account</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
+            <span>Create</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">

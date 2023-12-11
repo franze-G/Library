@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
+/* 
+dashboard
+inventory
+account
+*/
+
 :root {
   /* colors */
   --accent: #959e67;
@@ -93,13 +99,7 @@ body {
   width: 100%;
   padding: 1rem;
 }
-/* wala pang use */
-/* .header--wrapper img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 50%;
-} */
+
 .header--wrapper {
   display: flex;
   justify-content: space-between;
@@ -130,7 +130,6 @@ body {
   position: relative;
   font-size: var(--heading-Fsize);
 }
-
 .search--box {
   background: var(--primary);
   border-radius: 15px;
@@ -154,13 +153,6 @@ body {
 }
 
 /* content  */
-.top--buttons {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 0 10px;
-  /* left and right padding wala */
-}
 
 .top--cards {
   position: relative;
@@ -214,38 +206,73 @@ body {
   word-wrap: break-word;
 }
 
-/* some--texts */
+/* account management preview */
 
-.some--texts {
+.accounts--preview {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-  padding: 10px 0 10px;
-}
-
-.left--text {
-  padding: 5px;
-}
-
-.text {
   display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-transform: uppercase;
-  font-size: larger;
-  margin-bottom: 10px;
+  
 }
 
-.bestseller--button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 270px;
-  height: 70px;
-  padding: 10px;
-  background: var(--accent);
-  border: double var(--secondary);
-  border-width: 5px;
+/* table preview */
+
+.table {
+  width: 82vw;
+  height: 30%;
+  background-color: #fff5;
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0.4rem 0.8rem var(--secondary);
   border-radius: 20px;
+
+  /* pag sobra sa box laman ma ccut off */
+  overflow: hidden;
+}
+
+.table--header {
+  width: 100%;
+  max-height: calc(90% - 0.8rem);
+  background-color: #fff4;
+  padding: 0.8rem 1rem;
+}
+
+.table--body {
+  width: 95%;
+  max-height: 90%;
+  background-color: #fffb;
+  margin: 0.8rem auto;
+  border-radius: 0.8rem;
+
+  overflow: auto;
+}
+table,
+th,
+td {
+  padding: 1rem;
+  border-collapse: collapse;
+  text-align: left;
+}
+table {
+  width: 100%;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  border-collapse: collapse;
+  background-color: var(--primary);
+}
+
+tbody tr:nth-child(even) {
+  background-color: #0000000b;
+}
+
+tbody tr:hover {
+  background-color: #fff6;
+}
+
+.status {
+  background-color: #ebc474;
+  padding: 0.4rem 0.3rem;
+  border-radius: 2rem;
+  text-align: center;
 }

@@ -59,12 +59,6 @@
       <div class="logo"></div>
       <ul class="menu">
         <li class="active">
-          <a href="">
-            <i class="fa-solid fa-address-book"></i>
-            <span>Profile</span>
-          </a>
-        </li>
-        <li>
           <a href="Dashboard.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
@@ -73,31 +67,19 @@
         <li>
           <a href="Inventory.php">
             <i class="fa-solid fa-book"></i>
-            <span>Book Inventory</span>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li >
+          <a href="account.php">
+            <i class="fa-solid fa-book"></i>
+            <span>Accounts</span>
           </a>
         </li>
         <li>
           <a href="create.php">
             <i class="fa-solid fa-user-plus"></i>
-            <span>Create Account</span>
-          </a>
-        </li>
-        <li>
-          <a href="account.php">
-            <i class="fa-solid fa-square-plus"></i>
-            <span>Account Management</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
+            <span>Create</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
@@ -119,12 +101,11 @@
         <p><?php echo strtoupper($fname); ?> </p>
         </div>
       </div>
-      
-      <div class="top--buttons">
+      <!-- <div class="top--buttons">
         <div class="card card-notif">
           <i class='bx bxs-bell'></i>
         </div>
-      </div>
+      </div> -->
 
       <div class="top--cards">
         <div class="card card--content lost">
@@ -178,21 +159,51 @@
           </div>
           <div class="image--inside-the-card"></div>
         </div>
-        </div>
+      </div>
 
-        <div class="some--texts">
-          <div class="left--text">
-            <p class="text">Check the best<br> selling books <br> of the year 2023!</p>
-            <div class="bestseller--button">View Bestsellers</div>
-            </div>
-          <div class="right--text">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam at cupiditate ullam, nemo nam dolores!</p>
+      <div class="accounts--preview">
+        <div class="table">
+          <div class="table--header">
+            <h1>Preview</h1>
           </div>
-          
+          <div class="table--body">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Full Name</th>
+                  <th>Student Number</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>User Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  if ($result->num_rows > 0) {
+                      while ($row = $result->fetch_assoc()) {
+                          echo '<tr>';
+                          echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
+                          echo '<td>' . $row['fullname'] . '</td>';
+                          echo '<td>' . $row['id_number'] . '</td>';
+                          echo '<td>' . $row['email'] . '</td>';
+                          echo '<td>' . $row['department'] . '</td>';
+                          echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
+                          echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
+
+                      }
+                  } else {
+                      echo '<tr><td colspan="7">No pending accounts.</td></tr>';
+                  }
+                  ?>
+                </tbody>
+              </table>
+            </div>
         </div>
+      </div>
 
       </div>
-    </div>
 
     <!-- fontawesome icons -->
     <script
