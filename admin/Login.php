@@ -122,14 +122,7 @@ if (isset($_POST['idnum'], $_POST['password'])) {
               <button type="submit">Signin</button>
             </div>
           </form>
-          <div class="form-link">
-            <span
-              >Not registered?
-              <a href="signup.php" class="link signup-link">
-                Signup
-              </a>
-            </span>
-          </div>
+
         </div>
       </div>
     </section>

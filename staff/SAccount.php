@@ -60,7 +60,7 @@
           </a>
         </li>
         <li>
-          <a href="Staff.php">
+          <a href="../admin/Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>

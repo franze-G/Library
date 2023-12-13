@@ -23,25 +23,19 @@
       <div class="logo"></div>
       <ul class="menu">
         <li>
-          <a href="Dashboard.php">
+          <a href="../admin/Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li class="active">
-          <a href="Inventory.php">
+          <a href="SInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Inventory</span>
           </a>
         </li>
         <li>
-          <a href="account.php">
-            <i class="fa-solid fa-book"></i>
-            <span>Accounts</span>
-          </a>
-        </li>
-        <li>
-          <a href="create.php">
+          <a href="SCreate.php">
             <i class="fa-solid fa-user-plus"></i>
             <span>Create</span>
           </a>
@@ -96,7 +90,7 @@
                         echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                         echo '<td>' . $row['quantity'] . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
-                        echo '<td><a class="" href="Borrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
+                        echo '<td><a class="" href="STBorrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
                         echo '</tr>';
                     }
                 }

@@ -1,16 +1,14 @@
 <?php
-    // Include configuration file
     include('../configuration/config.php');
 
-    // Check if the user has a valid token (assuming a login system)
     if (isset($_COOKIE['token'])) {
         $id = $_COOKIE['token'];
 
-        // Fetch user details using prepared statement
-        $sql = "SELECT account.*, admin.fullname, admin.department, admin.id_number
+        $sql = "SELECT account.*, user.fullname, user.course, user.student_number
                 FROM account 
-                JOIN `admin` ON account.id = admin.id 
+                JOIN `user` ON account.id = user.id 
                 WHERE account.id = ?";
+
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
 
@@ -21,11 +19,11 @@
                 $usertype = $row['user_type'];
                 $userid = $row['id'];
                 $fname = $row['fullname'];
-                $department = $row['department'];
-                $idnumber = $row['id_number'];
+                $course = $row['course'];
+                $studentnumber = $row['student_number'];
             } else {
-                // Token not exist, redirect to login page
-                header("location: login.php");
+                // token not exist
+                header("location:login.php");
                 exit();
             }
         } else {
@@ -34,17 +32,15 @@
 
         $stmt->close();
     } else {
-        // No token found, redirect to login page
-        header("location: login.php");
+        header("location:login.php");
         exit();
     }
 
-    // Retrieve book ID from the query string
     $bookId = $_GET['id'] ?? null;
 
-    // Check if the book ID is provided
+    // Check if the ID is provided
     if ($bookId !== null) {
-        // Fetch book details using prepared statement
+        // Retrieve item details based on ID (using prepared statement to prevent SQL injection)
         $sql = "SELECT * FROM book WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $bookId);
@@ -53,26 +49,26 @@
         // Check if the query was successful
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            // Fetch book details
+            // Fetch item details
             $item = $result->fetch_assoc();
 
             // Close the result set
             $result->close();
         } else {
-            // Book not found, handle the error or redirect
-            header("location: SInventory.php");
+            // Item not found, handle the error or redirect
+            header("location: STInventory.php");
             exit();
         }
         $stmt->close();
     } else {
-        // Book ID not provided, handle the error or redirect
-        header("location: SInventory.php");
+        // ID not provided, handle the error or redirect
+        header("location: STInventory.php");
         exit();
     }
-
-    // Check if the form is submitted using POST method
+    
+// The $insertStmt variable is not defined, so it should be removed
+// $insertStmt->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +89,9 @@
                 <header>Book Borrow Form</header>
                 <form id="" action="" method="post">
                     <!-- Display user's full name, course, and student number -->
+
+                    <input type="hidden" name="book_id" value="<?php echo $bookId; ?>">
+
                     <div class="field input-field">
                         <input 
                             type="text" 
@@ -108,7 +107,7 @@
                         <input 
                             type="text" 
                             name="course" 
-                            value="<?php echo $department; ?>" 
+                            value="<?php echo $course; ?>" 
                             class="input" 
                             placeholder="Course" 
                             readonly
@@ -119,7 +118,7 @@
                         <input 
                             type="text" 
                             name="student_number" 
-                            value="<?php echo $idnumber; ?>" 
+                            value="<?php echo $studentNumber; ?>" 
                             class="input" 
                             placeholder="Student Number" 
                             readonly
@@ -160,17 +159,6 @@
                         />
                     </div>
 
-                    
-                    <div class="field input-field">
-                        <input 
-                            type="text" 
-                            name="quantity" 
-                            value="" 
-                            class="input" 
-                            placeholder="Enter quantity" 
-                        />
-                    </div>
-
                     <div class="field input-field">
                         <input 
                             type="date" 
@@ -192,6 +180,7 @@
                      
                         />
                     </div>
+
                     <!-- Other fields... -->
 
                     <div class="field button-field">

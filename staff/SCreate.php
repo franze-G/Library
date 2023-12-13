@@ -123,12 +123,6 @@ if (isset($_POST['submit'])) {
 
             </div>
           </form>
-          <div class="form-link">
-            <span
-              >Already have an account?
-              <a href="Login.php" class="link signup-link">Signin</a>
-            </span>
-          </div>
         </div>
       </div>
     </section>

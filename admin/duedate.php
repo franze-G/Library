@@ -2,7 +2,7 @@
     include('../configuration/config.php');
 
     // Fetch user details from the database
-    $sql = "SELECT * FROM book";
+    $sql = "SELECT * FROM borrow";
     $result = $conn->query($sql);
 
 ?>
@@ -58,23 +58,24 @@
     <div class="main-content">
       <div class="table">
         <div class="table--header">
-          <h1>Book Inventory</h1>
+          <h1>Due Date</h1>
         </div>
         <div class="table--body">
           <table>
             <thead>
               <tr>
-                <th>Image</th>
                 <th>ID</th>
+                <th>Fullname</th>
+                <th>Book ID</th>
                 <th>Book Title</th>
                 <th>Author</th>
                 <th>Genre</th>
                 <th>Version</th>
                 <th>Type</th>
-                <th>Publish Date</th>
                 <th>Quantity</th>
+                <th>Borrow Date</th>
+                <th>Return Date</th> 
                 <th>Status</th>
-                <th>Action</th>
                 <!-- Add more columns as needed -->
               </tr>
             </thead>
@@ -86,17 +87,19 @@
                         // Determine the class based on status for styling
 
                         echo '<tr>';
-                        echo '<td><img src="' . $row['image'] . '" alt="Book Image" height="50"></td>';
                         echo '<td>' . $row['id'] . '</td>';
+                        echo '<td>' . $row['fullname'] . '</td>';
+                        echo '<td>' . $row['book_id'] . '</td>';
                         echo '<td>' . $row['title'] . '</td>';
                         echo '<td>' . $row['author'] . '</td>';
                         echo '<td>' . $row['genre'] . '</td>';
                         echo '<td>' . $row['version'] . '</td>';
                         echo '<td>' . $row['type'] . '</td>';
-                        echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                         echo '<td>' . $row['quantity'] . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
-                        echo '<td><a class="" href="Borrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
+
                         echo '</tr>';
                     }
                 }

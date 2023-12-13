@@ -79,7 +79,19 @@
         <li>
           <a href="create.php">
             <i class="fa-solid fa-user-plus"></i>
-            <span>Create</span>
+            <span>Create Account</span>
+          </a>
+        </li>
+        <li>
+          <a href="duedate.php">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>Due Dates</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fa-solid fa-toolbox"></i>
+            <span>Settings</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
@@ -180,22 +192,25 @@
                 </tr>
               </thead>
               <tbody>
-                <?php
-                  if ($result->num_rows > 0) {
-                      while ($row = $result->fetch_assoc()) {
-                          echo '<tr>';
-                          echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
-                          echo '<td>' . $row['fullname'] . '</td>';
-                          echo '<td>' . $row['id_number'] . '</td>';
-                          echo '<td>' . $row['email'] . '</td>';
-                          echo '<td>' . $row['department'] . '</td>';
-                          echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
-                          echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
+              <?php
+                    $userQuery = "SELECT * FROM `admin` WHERE approval_status = 'pending'";
+                    $result = $conn->query($userQuery);
 
-                      }
-                  } else {
-                      echo '<tr><td colspan="7">No pending accounts.</td></tr>';
-                  }
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<tr>';
+                            echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
+                            echo '<td>' . $row['fullname'] . '</td>';
+                            echo '<td>' . $row['id_number'] . '</td>';
+                            echo '<td>' . $row['email'] . '</td>';
+                            echo '<td>' . $row['department'] . '</td>';
+                            echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
+                            echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
+                            echo '</tr>';
+                        }
+                    } else {
+                        echo '<tr><td colspan="7">No pending accounts.</td></tr>';
+                    }
                   ?>
                 </tbody>
               </table>

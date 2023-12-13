@@ -71,7 +71,7 @@
           </a>
         </li>
         <li>
-          <a href="SInventory.php">
+          <a href="../student/STInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Book Inventory</span>
           </a>
