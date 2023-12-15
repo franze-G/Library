@@ -100,6 +100,9 @@
             if ($updateQtyStmt->execute()) {
                 echo "Book borrowed successfully!";
             } else {
+                echo "Error updating book quantity: " . $conn->error;
+            }
+
             $updateQtyStmt->close();
         } else {
             // Error inserting into the database
