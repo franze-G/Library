@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 02:48 PM
+-- Generation Time: Dec 15, 2023 at 12:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,6 +41,13 @@ CREATE TABLE `book` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`id`, `title`, `author`, `genre`, `version`, `type`, `date_publish`, `quantity`, `status`, `image`) VALUES
+(18, 'The subtle art', 'Mark Manson', 'Self-Help', 'Version 1', 'Original', '2023-12-15', '10', 'registered', '../Image/image657c3d7dec068_sublte.jpg');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -58,7 +65,7 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

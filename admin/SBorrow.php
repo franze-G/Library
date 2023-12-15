@@ -70,9 +70,48 @@
         exit();
     }
 
-    // Check if the form is submitted using POST method
-?>
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+        // Retrieve form data
+        $fname = $_POST['fullname'];
+        $department = $_POST['department'];
+        $idnumber = $_POST['id_number'];
+        $title = $_POST['book_title'];
+        $genre = $_POST ['genre'];
+        $author = $_POST['author'];
+        $version = $_POST['version'];
+        $type = $_POST['type'];
+        $qty = $_POST['quantity'];
+        $borrowDate = $_POST['borrow_date'];
+        $dueDate = $_POST['due_date'];
 
+        // Insert borrowed book information into the database
+        $insertSql = "INSERT INTO borrow (id, book_id, fullname, id_number, department, title, author, genre, version, type, quantity, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $insertStmt = $conn->prepare($insertSql);
+        $insertStmt->bind_param("iisssssssssss", $userid, $bookId, $fname, $idnumber, $department, $title, $author, $genre, $version, $type, $qty, $borrowDate, $dueDate);
+
+        if ($insertStmt->execute()) {
+            // Successfully inserted into the database
+            // Update book quantity in the database
+            $updateQtySql = "UPDATE book SET quantity = quantity - ? WHERE id = ?";
+            $updateQtyStmt = $conn->prepare($updateQtySql);
+            $updateQtyStmt->bind_param("ii", $qty, $bookId);
+
+            if ($updateQtyStmt->execute()) {
+                echo "Book borrowed successfully!";
+            } else {
+                echo "Error updating book quantity: " . $conn->error;
+            }
+
+            $updateQtyStmt->close();
+        } else {
+            // Error inserting into the database
+            echo "Error: " . $conn->error;
+        }
+
+        $insertStmt->close();
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +146,7 @@
                     <div class="field input-field">
                         <input 
                             type="text" 
-                            name="course" 
+                            name="department" 
                             value="<?php echo $department; ?>" 
                             class="input" 
                             placeholder="Course" 
@@ -118,7 +157,7 @@
                     <div class="field input-field">
                         <input 
                             type="text" 
-                            name="student_number" 
+                            name="id_number" 
                             value="<?php echo $idnumber; ?>" 
                             class="input" 
                             placeholder="Student Number" 
@@ -164,10 +203,33 @@
                     <div class="field input-field">
                         <input 
                             type="text" 
+                            name="version" 
+                            value="<?php echo $item['version']; ?>" 
+                            class="input" 
+                            placeholder="Genre" 
+                            readonly
+                        />
+                    </div>
+
+                    
+                    <div class="field input-field">
+                        <input 
+                            type="text" 
+                            name="type" 
+                            value="<?php echo $item['type']; ?>" 
+                            class="input" 
+                            placeholder="Genre" 
+                            readonly
+                        />
+                    </div>
+
+                    <div class="field input-field">
+                        <input 
+                            type="text" 
                             name="quantity" 
                             value="" 
                             class="input" 
-                            placeholder="Enter quantity" 
+                            placeholder="Enter Quantity" 
                         />
                     </div>
 
@@ -192,6 +254,7 @@
                      
                         />
                     </div>
+
                     <!-- Other fields... -->
 
                     <div class="field button-field">

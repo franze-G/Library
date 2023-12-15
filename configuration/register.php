@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
                 echo "Record successfully submitted.";
 
                 // Redirect to the book inventory with a delay of 3 seconds
-                echo '<meta http-equiv="refresh" content="3;url=../staff/SInventory.php" />';
+                echo '<meta http-equiv="refresh" content="3;url=../admin/SInventory.php" />';
                 exit(); // Ensure that no further code is executed after the redirect
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;

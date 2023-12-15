@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 02:48 PM
+-- Generation Time: Dec 15, 2023 at 12:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `fullname`, `id_number`, `email`, `department`, `approval_status`, `user_type`) VALUES
-(13, 'FRANZE GARCIA', '202119379', 'franze@gmail.com', 'Science Department', 'approved', '1');
+(13, 'FRANZE GARCIA', '202119379', 'franze@gmail.com', 'Science Department', 'approved', '1'),
+(16, 'CARL ANDREI', '2020', 'carl@gmail.com', 'COMP. SCIE DEPT', 'approved', '2'),
+(17, 'YAHJ OLIVERIA', '2029', 'carl@gmail.com', 'COMP. SCIE DEPT', 'pending', '1');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +64,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

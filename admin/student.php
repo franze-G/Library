@@ -58,27 +58,21 @@
     <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
-        <li class="active">
-          <a href="">
-            <i class="fa-solid fa-address-book"></i>
-            <span>Profile</span>
-          </a>
-        </li>
         <li>
-          <a href="Staff.php">
+          <a href="student.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="../student/STInventory.php">
+          <a href="STInventory.php">
             <i class="fa-solid fa-book"></i>
-            <span>Book Inventory</span>
+            <span>Inventory</span>
           </a>
         </li>
 
         <li>
-          <a href="#">
+          <a href="../student/STduedate.php">
             <i class="fa-solid fa-calendar-day"></i>
             <span>Due Dates</span>
           </a>
@@ -109,13 +103,11 @@
         <p><?php echo strtoupper($fname); ?> </p>
         </div>
       </div>
-      
-      <div class="top--buttons">
-       
+      <!-- <div class="top--buttons">
         <div class="card card-notif">
           <i class='bx bxs-bell'></i>
         </div>
-      </div>
+      </div> -->
 
       <div class="top--cards">
         <div class="card card--content lost">
@@ -169,22 +161,8 @@
           </div>
           <div class="image--inside-the-card"></div>
         </div>
-        </div>
-
-        <div class="some--texts">
-          <div class="left--text">
-            <p class="text">Check the best<br> selling books <br> of the year 2023!</p>
-            <div class="bestseller--button">View Bestsellers</div>
-            </div>
-          <div class="right--text">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam at cupiditate ullam, nemo nam dolores!</p>
-          </div>
-          
-        </div>
-
       </div>
-    </div>
-
+      </div>
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"

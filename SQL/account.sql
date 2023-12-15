@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 02:48 PM
+-- Generation Time: Dec 15, 2023 at 12:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,7 +40,12 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `username`, `pass`, `user_type`, `approval_status`) VALUES
-(13, '202119379', '21232f297a57a5a743894a0e4a801fc3', 1, 'pending');
+(13, '202119379', '21232f297a57a5a743894a0e4a801fc3', 1, 'pending'),
+(16, '2020', '1253208465b1efa876f982d8a9e73eef', 2, 'pending'),
+(17, '2029', '21232f297a57a5a743894a0e4a801fc3', 1, 'pending'),
+(65, '2024', 'cd73502828457d15655bbd7a63fb0bc8', 3, 'pending'),
+(73, '2020', 'd41d8cd98f00b204e9800998ecf8427e', 2, 'approved'),
+(74, '2024', 'd41d8cd98f00b204e9800998ecf8427e', 3, 'approved');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +65,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

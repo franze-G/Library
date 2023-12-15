@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2023 at 09:46 PM
+-- Generation Time: Dec 15, 2023 at 12:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,13 +43,6 @@ CREATE TABLE `borrow` (
   `return_date` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `borrow`
---
-
-INSERT INTO `borrow` (`book_id`, `id`, `fullname`, `id_number`, `department`, `title`, `author`, `genre`, `version`, `type`, `quantity`, `borrow_date`, `return_date`, `status`) VALUES
-(15, '13', 'FRANZE GARCIA', '202119379', 'Science Department', 'The Subtle Art', 'Mark Manson', 'Self-Help', 'Version 1', 'Original', '2', '2023-12-14', '2023-12-15', '');
 
 --
 -- Indexes for dumped tables

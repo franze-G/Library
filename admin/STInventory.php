@@ -19,31 +19,34 @@
   </head>
   <body>
 
-    <div class="sidebar">
+  <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
+
         <li>
-          <a href="../admin/Staff.php">
+          <a href="Student.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="active">
-          <a href="SInventory.php">
+        <li>
+          <a href="STInventory.php">
             <i class="fa-solid fa-book"></i>
-            <span>Inventory</span>
+            <span>Book Inventory</span>
           </a>
         </li>
+
         <li>
-          <a href="SAccount.php">
-            <i class="fa-solid fa-book"></i>
-            <span>Accounts</span>
+          <a href="../student/STduedate.php">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>Due Dates</span>
           </a>
         </li>
+            
         <li>
-          <a href="SCreate.php">
-            <i class="fa-solid fa-user-plus"></i>
-            <span>Create</span>
+          <a href="#">
+            <i class="fa-solid fa-toolbox"></i>
+            <span>Settings</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
@@ -78,11 +81,11 @@
                 <!-- Add more columns as needed -->
               </tr>
             </thead>
-          <tbody>
-            <!-- Dynamically populate this tbody with user data -->
+            <tbody>
+        <!-- Dynamically populate this tbody with book data -->
             <?php
-                if ($result->num_rows > 0){
-                    while ($row = $result->fetch_assoc()){
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
                         // Determine the class based on status for styling
 
                         echo '<tr>';
@@ -96,17 +99,23 @@
                         echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                         echo '<td>' . $row['quantity'] . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
-                        echo '<td><a class="" href="SBorrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
+
+                        // Check if the quantity is greater than 0 before allowing borrowing
+                        if ($row['quantity'] > 0) {
+                            echo '<td><a class="" href="STBorrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
+                        } else {
+                            echo '<td>Not Available</td>';
+                        }
+
                         echo '</tr>';
                     }
                 }
             ?>
-          </tbody>
+        </tbody>
         </table>
       </div>
     </div>
   </div>
-
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"

@@ -92,7 +92,15 @@
 
         if ($insertStmt->execute()) {
             // Successfully inserted into the database
-            echo "Book borrowed successfully!";
+            // Update book quantity in the database
+            $updateQtySql = "UPDATE book SET quantity = quantity - ? WHERE id = ?";
+            $updateQtyStmt = $conn->prepare($updateQtySql);
+            $updateQtyStmt->bind_param("ii", $qty, $bookId);
+
+            if ($updateQtyStmt->execute()) {
+                echo "Book borrowed successfully!";
+            } else {
+            $updateQtyStmt->close();
         } else {
             // Error inserting into the database
             echo "Error: " . $conn->error;
