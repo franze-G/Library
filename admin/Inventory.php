@@ -96,7 +96,6 @@
                         echo '<td>' . date('M d, Y', strtotime($row['date_publish'])) . '</td>';
                         echo '<td>' . $row['quantity'] . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
-                        echo '<td><a class="" href="Borrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
                         echo '</tr>';
                     }
                 }

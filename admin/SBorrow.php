@@ -77,40 +77,40 @@
         $department = $_POST['department'];
         $idnumber = $_POST['id_number'];
         $title = $_POST['book_title'];
-        $genre = $_POST ['genre'];
+        $genre = $_POST['genre'];
         $author = $_POST['author'];
         $version = $_POST['version'];
         $type = $_POST['type'];
         $qty = $_POST['quantity'];
         $borrowDate = $_POST['borrow_date'];
         $dueDate = $_POST['due_date'];
-
+    
         // Insert borrowed book information into the database
-        $insertSql = "INSERT INTO borrow (id, book_id, fullname, id_number, department, title, author, genre, version, type, quantity, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $insertSql = "INSERT INTO borrow (book_id, fullname, id_number, department, title, author, genre, version, type, quantity, borrow_date, return_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $insertStmt = $conn->prepare($insertSql);
-        $insertStmt->bind_param("iisssssssssss", $userid, $bookId, $fname, $idnumber, $department, $title, $author, $genre, $version, $type, $qty, $borrowDate, $dueDate);
-
+        $insertStmt->bind_param("isssssssssss", $bookId, $fname, $idnumber, $department, $title, $author, $genre, $version, $type, $qty, $borrowDate, $dueDate);
+    
         if ($insertStmt->execute()) {
             // Successfully inserted into the database
             // Update book quantity in the database
             $updateQtySql = "UPDATE book SET quantity = quantity - ? WHERE id = ?";
             $updateQtyStmt = $conn->prepare($updateQtySql);
             $updateQtyStmt->bind_param("ii", $qty, $bookId);
-
+    
             if ($updateQtyStmt->execute()) {
                 echo "Book borrowed successfully!";
             } else {
                 echo "Error updating book quantity: " . $conn->error;
             }
-
+    
             $updateQtyStmt->close();
         } else {
             // Error inserting into the database
             echo "Error: " . $conn->error;
         }
-
+    
         $insertStmt->close();
-    }
+    }    
 ?>
 
 <!DOCTYPE html>

@@ -50,25 +50,26 @@
   </head>
   <body>
 
+ 
   <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
         <li class="active">
-          <a href="">
-            <i class="fa-solid fa-address-book"></i>
-            <span>Profile</span>
-          </a>
-        </li>
-        <li>
           <a href="../admin/Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="SInventory.php">
+          <a href="../admin/SInventory.php">
             <i class="fa-solid fa-book"></i>
-            <span>Book Inventory</span>
+            <span>Inventory</span>
+          </a>
+        </li>
+        <li >
+          <a href="SAccount.php">
+            <i class="fa-solid fa-image-portrait"></i>
+            <span>Accounts</span>
           </a>
         </li>
         <li>
@@ -78,21 +79,15 @@
           </a>
         </li>
         <li>
-          <a href="SAccount.php">
-            <i class="fa-solid fa-square-plus"></i>
-            <span>Account Management</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
+          <a href="../admin/Sduedate.php">
             <i class="fa-solid fa-calendar-day"></i>
             <span>Due Dates</span>
           </a>
         </li>
         <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
+          <a href="SRegister.php">
+            <i class="fa-solid fa-square-plus"></i>
+            <span>Register Book</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
