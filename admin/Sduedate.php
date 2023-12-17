@@ -47,7 +47,7 @@
           </a>
         </li>
         <li>
-          <a href="../staff/Sduedate.php">
+          <a href="Sduedate.php">
             <i class="fa-solid fa-calendar-day"></i>
             <span>Due Dates</span>
           </a>
@@ -78,6 +78,7 @@
               <tr>
                 <th>ID</th>
                 <th>Fullname</th>
+                <th>Department</th>
                 <th>Book ID</th>
                 <th>Book Title</th>
                 <th>Author</th>
@@ -88,6 +89,8 @@
                 <th>Borrow Date</th>
                 <th>Return Date</th> 
                 <th>Status</th>
+                <th>Action</th>
+
                 <!-- Add more columns as needed -->
               </tr>
             </thead>
@@ -101,6 +104,7 @@
                         echo '<tr>';
                         echo '<td>' . $row['id'] . '</td>';
                         echo '<td>' . $row['fullname'] . '</td>';
+                        echo '<td>' . $row['department'] . '</td>';
                         echo '<td>' . $row['book_id'] . '</td>';
                         echo '<td>' . $row['title'] . '</td>';
                         echo '<td>' . $row['author'] . '</td>';
@@ -111,7 +115,7 @@
                         echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
                         echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
                         echo '<td>' . $row['status'] . '</td>';
-
+                        echo '<td><a href="SReturn.php?id=' . $row['id'] . '" class="return-button">Return Book</a></td>';
                         echo '</tr>';
                     }
                 }
