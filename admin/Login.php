@@ -113,10 +113,6 @@ if (isset($_POST['idnum'], $_POST['password'])) {
               <i class="bx bx-hide eye-icon"></i>
             </div>
 
-            <div class="form-link">
-              <a class="forgot-pass">Forgot password?</a>
-            </div>
-
             <div class="field button-field">
               <!-- type="submit"-->
               <button type="submit">Signin</button>
