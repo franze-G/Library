@@ -15,7 +15,7 @@
     <!-- css -->
     <link rel="stylesheet" href="../style/account.css">
 
-    <title>Inventory</title>
+    <title>Due Dates</title>
   </head>
   <body>
 

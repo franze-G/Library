@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="confirm.css" />
     <link rel="stylesheet" href="../style/account.css">
 
-    <title>User</title>
+    <title>Accounts</title>
   </head>
   <body>
 

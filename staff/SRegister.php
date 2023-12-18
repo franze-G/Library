@@ -9,15 +9,15 @@
       rel="stylesheet"
     />
     <!-- confirm css -->
-    <link rel="stylesheet" href="../style/signup.css" />
-    <title>Signup</title>
+    <link rel="stylesheet" href="../style/SBorrow.css" />
+    <title>Register</title>
   </head>
   <body>
     <section class="container formuh">
       <!-- signup -->
       <div class="cont-form signup">
         <div class="form-content">
-          <header>Create Account</header>
+          <header>Register a Book</header>
           <form id="" action="../configuration/register.php" method="post" enctype="multipart/form-data">
             <div class="field input-field">
               <input
@@ -102,7 +102,7 @@
             <div class="field button-field">
               <!-- add type="submit"-->
               <!-- add onclick="RegisterUser(evt)"-->
-              <a href="../admin/Dashboard.php">RETURN</a>
+              <a href="../admin/Staff.php">RETURN</a>
             </div>
           </form>
         </div>
