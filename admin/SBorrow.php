@@ -121,7 +121,7 @@
     <link rel="stylesheet" href="" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
     <!-- confirm css -->
-    <link rel="stylesheet" href="../style/signup.css" />
+    <link rel="stylesheet" href="../style/SBorrow.css" />
     <title>Book Borrow Form</title>
 </head>
 <body>
