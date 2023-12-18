@@ -112,7 +112,7 @@
 
                         // Check if the quantity is greater than 0 before allowing borrowing
                         if ($row['quantity'] > 0) {
-                            echo '<td><a class="approve-btn" href="SBorrow.php?id=' . $row['id'] . '">Borrow Book</a></td>';
+                            echo '<td><a class="approve-btn" href="SBorrow.php?id=' . $row['id'] . '">Borrow</a></td>';
                         } else {
                             echo '<td>Not Available</td>';
                         }
