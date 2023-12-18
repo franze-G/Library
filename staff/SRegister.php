@@ -9,8 +9,8 @@
       rel="stylesheet"
     />
     <!-- confirm css -->
-    <link rel="stylesheet" href="../style/signup.css" />
-    <title>Signup</title>
+    <link rel="stylesheet" href="../style/SBorrow.css" />
+    <title>Register</title>
   </head>
   <body>
     <section class="container formuh">
