@@ -96,11 +96,8 @@
     <div class="main--content">
       <div class="header--wrapper">
         <div class="header--title">
-          <span>Student</span>
-          <p>Dashboard</p>
-        </div>
-        <div class="header--name">
-        <p><?php echo strtoupper($fname); ?> </p>
+          <span>Admin</span>
+          <p><?php echo strtoupper($fname); ?></p>
         </div>
       </div>
       <!-- <div class="top--buttons">

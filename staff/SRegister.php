@@ -102,7 +102,7 @@
             <div class="field button-field">
               <!-- add type="submit"-->
               <!-- add onclick="RegisterUser(evt)"-->
-              <a href="../admin/Dashboard.php">RETURN</a>
+              <a href="../admin/Staff.php">RETURN</a>
             </div>
           </form>
         </div>

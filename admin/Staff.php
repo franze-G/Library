@@ -107,10 +107,7 @@
       <div class="header--wrapper">
         <div class="header--title">
           <span>Staff</span>
-          <p>Dashboard</p>
-        </div>
-        <div class="header--name">
-        <p><?php echo strtoupper($fname); ?> </p>
+          <p><?php echo strtoupper($fname); ?></p>
         </div>
       </div>
       <!-- <div class="top--buttons">
@@ -118,8 +115,6 @@
           <i class='bx bxs-bell'></i>
         </div>
       </div> -->
-
-
       <div class="top--cards">
         <div class="card card--content lost">
           <div class="card--textholder">
@@ -178,51 +173,47 @@
         </div>
       </div>
 
-      <div class="accounts--preview">
-        <div class="table">
-          <div class="table--header">
-            <h1>Preview</h1>
-          </div>
-          <div class="table--body">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Full Name</th>
-                  <th>Student Number</th>
-                  <th>Email</th>
-                  <th>Department</th>
-                  <th>User Type</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
+      <div class="tabular--wrapper">
+        <h3 class="main-title">Preview</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Student Number</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>User Type</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
               <?php
-                    $userQuery = "SELECT * FROM `user` WHERE approval_status = 'pending'";
-                    $result = $conn->query($userQuery);
+                $userQuery = "SELECT * FROM `admin` WHERE approval_status = 'pending'";
+                $result = $conn->query($userQuery);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<tr>';
-                            echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
-                            echo '<td>' . $row['fullname'] . '</td>';
-                            echo '<td>' . $row['student_number'] . '</td>';
-                            echo '<td>' . $row['email'] . '</td>';
-                            echo '<td>' . $row['course'] . '</td>';
-                            echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
-                            echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
-                            echo '</tr>';
-                        }
-                    } else {
-                        echo '<tr><td colspan="7">No pending accounts.</td></tr>';
+                  if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                      echo '<tr>';
+                      echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
+                      echo '<td>' . $row['fullname'] . '</td>';
+                      echo '<td>' . $row['id_number'] . '</td>';
+                      echo '<td>' . $row['email'] . '</td>';
+                      echo '<td>' . $row['department'] . '</td>';
+                      echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
+                      echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
+                      echo '</tr>';
                     }
-                  ?>
-                </tbody>
-              </table>
-            </div>
-        </div>
+                  } else {
+                      echo '<tr><td colspan="7">No pending accounts.</td></tr>';
+                  }
+              ?>
+            </tbody>
+          </table>
         </div>
       </div>
+
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"
