@@ -47,8 +47,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../style/student.css" />
-    <link rel="stylesheet" href="../style/">
+    <link rel="stylesheet" href="../style/student.css">
     <!-- boxicons -->
         <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -71,27 +70,9 @@
           </a>
         </li>
         <li>
-          <a href="Inventory.php">
+          <a href="STInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Inventory</span>
-          </a>
-        </li>
-        <li >
-          <a href="account.php">
-            <i class="fa-solid fa-book"></i>
-            <span>Accounts</span>
-          </a>
-        </li>
-        <li>
-          <a href="create.php">
-            <i class="fa-solid fa-user-plus"></i>
-            <span>Create Account</span>
-          </a>
-        </li>
-        <li>
-          <a href="duedate.php">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
@@ -106,11 +87,8 @@
     <div class="main--content">
       <div class="header--wrapper">
         <div class="header--title">
-          <span>Student</span>
-          <p>Dashboard</p>
-        </div>
-        <div class="header--name">
-        <p><?php echo strtoupper($fname); ?> </p>
+          <span>Admin</span>
+          <p><?php echo strtoupper($fname); ?></p>
         </div>
       </div>
 
@@ -173,12 +151,11 @@
       </div>
 
       <div class="tabular--wrapper">
-    <h3 class="main-title">Preview</h3>
+    <h3 class="main-title">Return Books</h3>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Full Name</th>
                     <th>Department</th>
                     <th>Book ID</th>
@@ -190,7 +167,6 @@
                     <th>Quantity</th>
                     <th>Borrow Date</th>
                     <th>Return Date</th>
-                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -202,7 +178,6 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo '<tr>';
-                        echo '<td>' . $row['id'] . '</td>';
                         echo '<td>' . $row['fullname'] . '</td>';
                         echo '<td>' . $row['department'] . '</td>';
                         echo '<td>' . $row['book_id'] . '</td>';
@@ -214,7 +189,6 @@
                         echo '<td>' . $row['quantity'] . '</td>';
                         echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
                         echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
-                        echo '<td>' . $row['status'] . '</td>';
                         echo '<td><a href="SReturn.php?id=' . $row['id'] . '" class="return-button">Return Book</a></td>';
                         echo '</tr>';
                     }

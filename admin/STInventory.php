@@ -36,19 +36,6 @@
           </a>
         </li>
 
-        <li>
-          <a href="../student/STduedate.php">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
-          </a>
-        </li>
-            
-        <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
-          </a>
-        </li>
         <li class="logout" id="SignoutBtn">
           <a href="Logout.php">
             <i class="fa-solid fa-right-from-bracket"></i>
