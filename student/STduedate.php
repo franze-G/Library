@@ -50,7 +50,7 @@
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
-          <a href="Logout.php">
+          <a href="../admin/Logout.php">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
           </a>

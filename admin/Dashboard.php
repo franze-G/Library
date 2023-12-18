@@ -87,12 +87,6 @@
             <span>Due Dates</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
-          </a>
-        </li>
         <li class="logout" id="SignoutBtn">
           <a href="Logout.php">
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -113,41 +107,45 @@
       <div class="top--cards">
         <div class="card card--content lost">
           <div class="card--textholder">
-            <?php
-              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+          <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `borrow`";
               $result = $conn->query($sql);
-              if ($result && $result->num_rows > 0) {
+
+              if ($result !== false && $result->num_rows > 0) {
                   $row = $result->fetch_assoc();
                   $bookCount = $row['bookCount'];
                   echo "<p class='count'>$bookCount</p>";
               } else {
                   echo "Error fetching book count: " . $conn->error;
               }
-            ?>
+          ?>
+
             <p class="statement">Borrowed Books</p>
           </div>
           <div class="image--inside-the-card"></div>
         </div>
         <div class="card card--content returned">
           <div class="card--textholder">
-            <?php
-              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+          <?php
+              $sql = "SELECT COUNT(*) AS returnedBookCount FROM `borrow` WHERE `status` = 'Returned'";
               $result = $conn->query($sql);
+
               if ($result && $result->num_rows > 0) {
                   $row = $result->fetch_assoc();
-                  $bookCount = $row['bookCount'];
-                  echo "<p class='count'>$bookCount</p>";
+                  $returnedBookCount = $row['returnedBookCount'];
+                  echo "<p class='count'>$returnedBookCount</p>";
               } else {
-                  echo "Error fetching book count: " . $conn->error;
+                  echo "Error fetching returned book count: " . $conn->error;
               }
-            ?>
+          ?>
+
             <p class="statement">Returned Books</p>
           </div>
           <div class="image--inside-the-card"></div>
         </div>
         <div class="card card--content available">
           <div class="card--textholder">
-            <?php
+          <?php
               $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
               $result = $conn->query($sql);
               if ($result && $result->num_rows > 0) {

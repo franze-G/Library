@@ -74,7 +74,6 @@
                 <th>Publish Date</th>
                 <th>Quantity</th>
                 <th>Status</th>
-                <th>Action</th>
                 <!-- Add more columns as needed -->
               </tr>
             </thead>

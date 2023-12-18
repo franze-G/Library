@@ -120,7 +120,11 @@ if (isset($_POST['submit'])) {
               <!-- add type="submit"-->
               <!-- add onclick="RegisterUser(evt)"-->
               <input type="submit" name="submit" value="REGISTER">
-
+            </div>
+            <div class="field button-field">
+              <!-- add type="submit"-->
+              <!-- add onclick="RegisterUser(evt)"-->
+              <a href="../admin/Staff.php">RETURN</a>
             </div>
           </form>
         </div>

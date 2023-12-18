@@ -260,6 +260,11 @@
                     <div class="field button-field">
                         <input type="submit" name="submit" value="BORROW">
                     </div>
+                    <div class="field button-field">
+              <!-- add type="submit"-->
+              <!-- add onclick="RegisterUser(evt)"-->
+              <a href="../admin/Dashboard.php">RETURN</a>
+            </div>
                 </form>
             </div>
         </div>

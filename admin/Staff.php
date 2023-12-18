@@ -143,16 +143,18 @@
         <div class="card card--content returned">
           <div class="card--textholder">
           <?php
-              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+              $sql = "SELECT COUNT(*) AS returnedBookCount FROM `borrow` WHERE `status` = 'Returned'";
               $result = $conn->query($sql);
+
               if ($result && $result->num_rows > 0) {
                   $row = $result->fetch_assoc();
-                  $bookCount = $row['bookCount'];
-                  echo "<p class='count'>$bookCount</p>";
+                  $returnedBookCount = $row['returnedBookCount'];
+                  echo "<p class='count'>$returnedBookCount</p>";
               } else {
-                  echo "Error fetching book count: " . $conn->error;
+                  echo "Error fetching returned book count: " . $conn->error;
               }
-            ?>
+          ?>
+
             <p class="statement">Returned Books</p>
           </div>
           <div class="image--inside-the-card"></div>
@@ -204,9 +206,9 @@
                             echo '<tr>';
                             echo '<td>'. '<strong>' . $row['id'] . '</strong>' . '</td>';
                             echo '<td>' . $row['fullname'] . '</td>';
-                            echo '<td>' . $row['id_number'] . '</td>';
+                            echo '<td>' . $row['student_number'] . '</td>';
                             echo '<td>' . $row['email'] . '</td>';
-                            echo '<td>' . $row['department'] . '</td>';
+                            echo '<td>' . $row['course'] . '</td>';
                             echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
                             echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
                             echo '</tr>';
