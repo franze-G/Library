@@ -96,7 +96,7 @@
     <div class="main--content">
       <div class="header--wrapper">
         <div class="header--title">
-          <span>Admin</span>
+          <span>Student</span>
           <p><?php echo strtoupper($fname); ?></p>
         </div>
       </div>
@@ -159,7 +159,64 @@
           <div class="image--inside-the-card"></div>
         </div>
       </div>
+
+      <div class="tabular--wrapper">
+    <h3 class="main-title">Preview</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Department</th>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Version</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $userQuery = "SELECT * FROM `borrow`";
+                $result = $conn->query($userQuery);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . $row['id'] . '</td>';
+                        echo '<td>' . $row['fullname'] . '</td>';
+                        echo '<td>' . $row['department'] . '</td>';
+                        echo '<td>' . $row['book_id'] . '</td>';
+                        echo '<td>' . $row['title'] . '</td>';
+                        echo '<td>' . $row['author'] . '</td>';
+                        echo '<td>' . $row['genre'] . '</td>';
+                        echo '<td>' . $row['version'] . '</td>';
+                        echo '<td>' . $row['type'] . '</td>';
+                        echo '<td>' . $row['quantity'] . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
+                        echo '<td>' . $row['status'] . '</td>';
+                        echo '<td><a href="SReturn.php?id=' . $row['id'] . '" class="return-button">Return Book</a></td>';
+                        echo '</tr>';
+                    }
+                } else {
+                    echo '<tr><td colspan="14">No records found</td></tr>';
+                }
+                ?>
+            </tbody>
+          </table>
+        </div>
       </div>
+      </div>
+
+      
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"
