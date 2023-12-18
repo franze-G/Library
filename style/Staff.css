@@ -208,55 +208,21 @@ body {
   word-wrap: break-word;
 }
 
-/* some--texts */
-
-.some--texts {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: space-between;
-  padding: 10px 0 10px;
-}
-
-.left--text {
-  padding: 5px;
-}
-
-.text {
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-transform: uppercase;
-  font-size: larger;
-  margin-bottom: 10px;
-}
-
-.bestseller--button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 270px;
-  height: 70px;
-  padding: 10px;
-  background: var(--accent);
-  border: double var(--secondary);
-  border-width: 5px;
-  border-radius: 20px;
-}
-
 /* preview */
 
 .tabular--wrapper {
   background: var(--F-color);
   margin-top: 1rem;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
 }
 .table-container {
   width: 100%;
 }
-
+.main-title {
+  padding-bottom: 10px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
