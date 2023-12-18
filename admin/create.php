@@ -52,13 +52,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/tunesc-vs/styles/login-sign.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
     <!-- confirm css -->
     <link rel="stylesheet" href="../style/signup.css" />
+    <link rel="stylesheet" href="../style/createUser.css">
     <title>Signup</title>
   </head>
   <body>
@@ -132,9 +132,10 @@
               <input type="submit" name="submit" value="REGISTER">
             </div>
             <div class="field button-field">
-              <!-- add type="submit"-->
-              <!-- add onclick="RegisterUser(evt)"-->
-              <a href="../admin/Dashboard.php">RETURN</a>
+              <div class="field">
+                <a href="../admin/Dashboard.php">RETURN
+                </a>
+            </div>
             </div>
           </form>
         </div>
@@ -144,7 +145,6 @@
     <!-- firebase -->
     <script type="module" src="/tunesc-vs/auth/signin.js"></script>
     <script type="module" src="/tunesc-vs/auth/signup.js"></script>
-
     <!-- show-hide pwd -->
     <script src="/tunesc-vs/components/showPass.js"></script>
   </body>

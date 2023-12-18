@@ -22,7 +22,7 @@
     <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
-        <li class="active">
+        <li>
           <a href="../admin/Staff.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
@@ -46,7 +46,7 @@
             <span>Create Account</span>
           </a>
         </li>
-        <li>
+        <li  class="active">
           <a href="Sduedate.php">
             <i class="fa-solid fa-calendar-day"></i>
             <span>Due Dates</span>
