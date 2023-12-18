@@ -178,6 +178,7 @@
                 <th>ID</th>
                 <th>Full Name</th>
                 <th>Student Number</th>
+                <th>Email</th>
                 <th>Department</th>
                 <th>User Type</th>
                 <th>Status</th>
@@ -185,7 +186,7 @@
             </thead>
             <tbody>
               <?php
-                $userQuery = "SELECT * FROM user WHERE approval_status = 'pending'";
+                $userQuery = "SELECT * FROM `admin` WHERE approval_status = 'pending'";
                 $result = $conn->query($userQuery);
 
                   if ($result->num_rows > 0) {
@@ -193,9 +194,10 @@
                       echo '<tr>';
                       echo '<td>'. '<strong></strong>' . $row['id'] . '</strong>' . '</td>';
                       echo '<td>' . $row['fullname'] . '</td>';
-                      echo '<td>' . $row['student_number'] . '</td>';
-                      echo '<td>' . $row['course'] . '</td>';
-                      echo '<td>' . ($row['user_type'] == 1 ? 'User' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
+                      echo '<td>' . $row['id_number'] . '</td>';
+                      echo '<td>' . $row['email'] . '</td>';
+                      echo '<td>' . $row['department'] . '</td>';
+                      echo '<td>' . ($row['user_type'] == 1 ? 'Admin' : ($row['user_type'] == 2 ? 'Student' : 'unknown')) . '</td>';
                       echo '<td>'. '<div class="status">' . $row['approval_status'] . '</div>' . '</td>';
                       echo '</tr>';
                     }

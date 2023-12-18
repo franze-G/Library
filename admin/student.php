@@ -171,49 +171,7 @@
           <div class="image--inside-the-card"></div>
         </div>
       </div>
-      
-      <div class="tabular--wrapper">
-        <h3 class="main-title">Borrowed Books</h3>
-        <div class="table-container">
-
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Book Title</th>
-                <th>Quantity</th>
-                <th>Borrow Date</th>
-                <th>Return Date</th> 
-
-
-                <!-- Add more columns as needed -->
-              </tr>
-            </thead>
-          <tbody>
-            <?php
-                $userQuery = "SELECT * FROM borrow WHERE approval_status = 'pending'";
-                $result = $conn->query($userQuery);
-
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<tr>';
-                        echo '<td>' . $row['id'] . '</td>';
-                        echo '<td>' . $row['title'] . '</td>';
-                        echo '<td>' . $row['author'] . '</td>';
-                        echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
-                        echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
-                        echo '<td>' . $row['status'] . '</td>';
-                        echo '<td><a href="SReturn.php?id=' . $row['id'] . '" class="return-button">Return Book</a></td>';
-                        echo '</tr>';
-                    }
-                  }
-              ?>
-          </tbody>
-        </table>
-        </div>
       </div>
-
-      </div>
-
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"

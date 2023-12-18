@@ -17,7 +17,7 @@
       <!-- signup -->
       <div class="cont-form signup">
         <div class="form-content">
-          <header>Register a Book</header>
+          <header>Book Register</header>
           <form id="" action="../configuration/register.php" method="post" enctype="multipart/form-data">
             <div class="field input-field">
               <input
