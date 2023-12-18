@@ -71,6 +71,7 @@
         </li>
         <li>
           <a href="STInventory.php">
+          <a href="STInventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Inventory</span>
           </a>
@@ -150,7 +151,7 @@
         </div>
       </div>
 
-      <div class="tabular--wrapper">
+    <div class="tabular--wrapper">
     <h3 class="main-title">Return Books</h3>
     <div class="table-container">
         <table>
