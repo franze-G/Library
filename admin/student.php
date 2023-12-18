@@ -6,9 +6,9 @@
         $id=$_COOKIE['token'];
 
         $sql ="SELECT account.*, user.fullname
-               FROM account 
-               JOIN user ON account.id = user.id 
-               WHERE account.id=$id";
+              FROM account 
+              JOIN user ON account.id = user.id 
+              WHERE account.id=$id";
 
             if($rs=$conn->query($sql)){
                 if($rs->num_rows>0){
@@ -34,6 +34,12 @@
                 header("location:");
             }
 
+
+
+    // Fetch user details from the database
+    $sql = "SELECT * FROM borrow";
+    $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -58,30 +64,34 @@
     <div class="sidebar">
       <div class="logo"></div>
       <ul class="menu">
-        <li>
-          <a href="student.php">
+        <li class="active">
+          <a href="Dashboard.php">
             <i class="fa-solid fa-chess-board"></i>
             <span>Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="STInventory.php">
+          <a href="Inventory.php">
             <i class="fa-solid fa-book"></i>
             <span>Inventory</span>
           </a>
         </li>
-
-        <li>
-          <a href="../student/STduedate.php">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>Due Dates</span>
+        <li >
+          <a href="account.php">
+            <i class="fa-solid fa-book"></i>
+            <span>Accounts</span>
           </a>
         </li>
-            
         <li>
-          <a href="#">
-            <i class="fa-solid fa-toolbox"></i>
-            <span>Settings</span>
+          <a href="create.php">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>Create Account</span>
+          </a>
+        </li>
+        <li>
+          <a href="duedate.php">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>Due Dates</span>
           </a>
         </li>
         <li class="logout" id="SignoutBtn">
@@ -100,50 +110,49 @@
           <p><?php echo strtoupper($fname); ?></p>
         </div>
       </div>
-      <!-- <div class="top--buttons">
-        <div class="card card-notif">
-          <i class='bx bxs-bell'></i>
-        </div>
-      </div> -->
 
       <div class="top--cards">
         <div class="card card--content lost">
           <div class="card--textholder">
-            <?php
-              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+          <?php
+              $sql = "SELECT COUNT(*) AS bookCount FROM `borrow`";
               $result = $conn->query($sql);
-              if ($result && $result->num_rows > 0) {
+
+              if ($result !== false && $result->num_rows > 0) {
                   $row = $result->fetch_assoc();
                   $bookCount = $row['bookCount'];
                   echo "<p class='count'>$bookCount</p>";
               } else {
                   echo "Error fetching book count: " . $conn->error;
               }
-            ?>
+          ?>
+
             <p class="statement">Borrowed Books</p>
           </div>
           <div class="image--inside-the-card"></div>
         </div>
         <div class="card card--content returned">
           <div class="card--textholder">
-            <?php
-              $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
+          <?php
+              $sql = "SELECT COUNT(*) AS returnedBookCount FROM `borrow` WHERE `status` = 'Returned'";
               $result = $conn->query($sql);
+
               if ($result && $result->num_rows > 0) {
                   $row = $result->fetch_assoc();
-                  $bookCount = $row['bookCount'];
-                  echo "<p class='count'>$bookCount</p>";
+                  $returnedBookCount = $row['returnedBookCount'];
+                  echo "<p class='count'>$returnedBookCount</p>";
               } else {
-                  echo "Error fetching book count: " . $conn->error;
+                  echo "Error fetching returned book count: " . $conn->error;
               }
-            ?>
+          ?>
+
             <p class="statement">Returned Books</p>
           </div>
           <div class="image--inside-the-card"></div>
         </div>
         <div class="card card--content available">
           <div class="card--textholder">
-            <?php
+          <?php
               $sql = "SELECT COUNT(*) AS bookCount FROM `book` WHERE `status` = 'registered'";
               $result = $conn->query($sql);
               if ($result && $result->num_rows > 0) {
@@ -159,7 +168,49 @@
           <div class="image--inside-the-card"></div>
         </div>
       </div>
+      
+      <div class="tabular--wrapper">
+        <h3 class="main-title">Borrowed Books</h3>
+        <div class="table-container">
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Book Title</th>
+                <th>Quantity</th>
+                <th>Borrow Date</th>
+                <th>Return Date</th> 
+
+
+                <!-- Add more columns as needed -->
+              </tr>
+            </thead>
+          <tbody>
+            <?php
+                $userQuery = "SELECT * FROM borrow WHERE approval_status = 'pending'";
+                $result = $conn->query($userQuery);
+
+                  if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr>';
+                        echo '<td>' . $row['id'] . '</td>';
+                        echo '<td>' . $row['title'] . '</td>';
+                        echo '<td>' . $row['author'] . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['borrow_date'])) . '</td>';
+                        echo '<td>' . date('M d, Y', strtotime($row['return_date'])) . '</td>';
+                        echo '<td>' . $row['status'] . '</td>';
+                        echo '<td><a href="SReturn.php?id=' . $row['id'] . '" class="return-button">Return Book</a></td>';
+                        echo '</tr>';
+                    }
+                  }
+              ?>
+          </tbody>
+        </table>
+        </div>
       </div>
+
+      </div>
+
     <!-- fontawesome icons -->
     <script
       src="https://kit.fontawesome.com/64d29af423.js"
